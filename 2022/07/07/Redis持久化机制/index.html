@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>若依项目前后端分离部署 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="启动防火墙 systemctl start firewalld 端口占用netstat -npl | grep “80” #开放端口 firewall-cmd –permanent –add-port&#x3D;3306&#x2F;tcp #重启防火墙firewall-cmd –reload #mysql安装docker pull mysql:5.7.30mkdir -p &#x2F;root&#x2F;mysql&#x2F;data &#x2F;root">
+  <meta name="description" content="Redis 持久化机制很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。 Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持两种不同的持久化操作。Redis 的一种持久化方式叫快照（snapshotting，RDB），另一种方式是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="若依项目前后端分离部署">
-<meta property="og:url" content="http://example.com/2021/06/15/%E8%8B%A5%E4%BE%9D%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/07/07/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="启动防火墙 systemctl start firewalld 端口占用netstat -npl | grep “80” #开放端口 firewall-cmd –permanent –add-port&#x3D;3306&#x2F;tcp #重启防火墙firewall-cmd –reload #mysql安装docker pull mysql:5.7.30mkdir -p &#x2F;root&#x2F;mysql&#x2F;data &#x2F;root">
+<meta property="og:description" content="Redis 持久化机制很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。 Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持两种不同的持久化操作。Redis 的一种持久化方式叫快照（snapshotting，RDB），另一种方式是">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/070502.png">
-<meta property="article:published_time" content="2021-06-15T08:32:27.000Z">
-<meta property="article:modified_time" content="2022-07-05T08:10:56.789Z">
+<meta property="article:published_time" content="2022-07-07T12:45:30.724Z">
+<meta property="article:modified_time" content="2022-07-07T12:49:04.246Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/070502.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,56 +154,26 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-若依项目前后端分离部署" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Redis持久化机制" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      若依项目前后端分离部署
-    </h1>
-  
-
-        
-        <a href="/2021/06/15/%E8%8B%A5%E4%BE%9D%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-  	<time datetime="2021-06-15T08:32:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-15</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="启动防火墙"><a href="#启动防火墙" class="headerlink" title="启动防火墙"></a>启动防火墙</h5><p> systemctl start firewalld</p>
-<h5 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h5><p>netstat -npl | grep “80”</p>
-<h5 id="开放端口"><a href="#开放端口" class="headerlink" title="#开放端口"></a>#开放端口</h5><p> firewall-cmd –permanent –add-port=3306/tcp</p>
-<h5 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="#重启防火墙"></a>#重启防火墙</h5><p>firewall-cmd –reload</p>
-<h5 id="mysql安装"><a href="#mysql安装" class="headerlink" title="#mysql安装"></a>#mysql安装</h5><p>docker pull mysql:5.7.30<br>mkdir -p /root/mysql/data /root/mysql/logs /root/mysql/conf<br>touch /root/mysql/conf/my.cnf<br>//密码是admin，-v则是挂载 –name容器名字，作为后面的启动删除名字<br>docker run -p 3306:3306 –rm –name mysql -v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/var/log/mysql -v /root/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7.30<br>docker start mysql</p>
-<h5 id="进入容器"><a href="#进入容器" class="headerlink" title="//进入容器"></a>//进入容器</h5><p>docker exec -it mysql /bin/bash<br>登录docker容器（方式参考上方文档)后登录mysql<br>mysql -uroot -padmin<br>修改登录者的权限<br>GRANT ALL ON <em>.</em> TO ‘root‘@’%’;<br>#刷新命令生效<br> flush privileges;</p>
-<h5 id="重启mysql"><a href="#重启mysql" class="headerlink" title="#重启mysql"></a>#重启mysql</h5><p> //docker  rm  mysql<br>docker run -p 3306:3306 –rm –name mysql -v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/var/log/mysql -v /root/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7.30<br>重启redis<br>//<br>docker run -d –rm -v /root/redis/data:/data –name redis -p 6379:6379 redis  redis-server  –appendonly yes<img src="/images/070502.png"></p>
-<h5 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h5><p>/data/service/ngnix/sbin/nginx -s reload</p>
-<h5 id="重启nginx-1"><a href="#重启nginx-1" class="headerlink" title="重启nginx"></a>重启nginx</h5><p> // cd /data/tmp<br>make install<br>/data/service/ngnix/sbin/nginx</p>
-<h5 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="#Jenkins安装"></a>#Jenkins安装</h5><p>docker pull jenkinsci/blueocean<br>docker run –name jenkins -u root –rm  -d -p 7005:8080 -p 50000:50000 -v /data/service/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /data/service/apache-maven-3.8.5:/usr/local/maven -v /data/service/jdk1.8.0_212:/usr/local/jdk jenkinsci/blueocean<br>-u root：以 root 权限启动，防止出现权限问题<br>-p 7005:8080：端口映射，服务器的 7005 端口映射容器的 8080 端口<br>-p 50000:50000：Jenkins代理默认通过TCP端口50000与Jenkins主机通信<br>-v /data/jenkins:/var/jenkins_home：把容器内的 Jenkins 目录挂载到服务器的 /data/jenkins 目录以防容器没了，数据也没了<br>-v /var/run/docker.sock:/var/run/docker.sock：保证容器内的 docker 与 服务器上 docker 的通讯<br> 附带下删除 jenkinsci/blueocean 容器<br> 删除对应绑定网桥<br>docker network disconnect –force bridge jenkinsci-blueocean<br> 删除 jenkinsci-blueocean 容器，xxxx  容器 ID<br>docker rm -f xxxx<br>查看密码 ，目录文件为/data/service/Jenkins<br>cat /data/service/jenkins/secrets/initialAdminPassword<br>Jenkisn部署项目</p>
-<p>1.全局工作配置<br>这里的java_home 路劲是docker挂载 路径，这里的maven路进是挂载路径<br>注意：只用修改java和maven，git是已经有的<br>2.插件安装<br>搜索 Publish over SSH 插件安装，搜索 Maven Integration 插件安装<br>3.ssh连接<br>在系统设置下配置远程连接，这里我配置主机地址<br>4.进入git项目配置</p>
-<p>首先生成公钥<br>进入jinkins容器后执行<br>Docker exec -it dockerid bash<br>ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#x35;&#x30;&#x31;&#x39;&#x34;&#55;&#x34;&#x39;&#53;&#49;&#64;&#49;&#54;&#51;&#x2e;&#x63;&#111;&#x6d;">&#49;&#x35;&#x30;&#x31;&#x39;&#x34;&#55;&#x34;&#x39;&#53;&#49;&#64;&#49;&#54;&#51;&#x2e;&#x63;&#111;&#x6d;</a>’<br>cat ~/.ssh/id_rsa.pub<br>将公钥粘入gitee<br> 在安全认证中把公钥加入<br>5，进入项目配置悬念则git仓库，选择刚才配置公钥</p>
-<p> .选择<br>6.选择ssh接入<br>下面的shell如下<br>cd /root/data/test<br>id=$(ps -ef | grep “ruoyi-admin.jar”  | grep -v grep| awk ‘{print $2}’)<br>echo $id<br>kill -9 $id<br>nohup /data/service/jdk1.8.0_212/bin/java -jar ruoyi-admin.jar &gt;myout.log 2&gt;&amp;1 &amp;<br>注意，这里一定要指定java执行路径 这里是/data/service/jdk1.8.0_212/bin/java，这是个大坑, 这里的远程目录是在/root下，即如果配置/data/test,则最终路径是在/root/data/test<br>部署gitlab<br>docker pull gitlab/gitlab-ce<br>docker run -d  -p 443:443 -p 80:80 -p 222:22 –name gitlab –restart always -v /root/gitlab/config:/etc/gitlab -v /root/gitlab/logs:/var/log/gitlab -v /root/gitlab/data:/var/opt/gitlab gitlab/gitlab-ce</p>
-<h6 id="gitlab-rb文件内容默认全是注释"><a href="#gitlab-rb文件内容默认全是注释" class="headerlink" title="gitlab.rb文件内容默认全是注释"></a>gitlab.rb文件内容默认全是注释</h6><p>$ vim /root/gitlab/config/gitlab.rb</p>
-<h6 id="配置http协议所使用的访问地址-不加端口号默认为80"><a href="#配置http协议所使用的访问地址-不加端口号默认为80" class="headerlink" title="配置http协议所使用的访问地址,不加端口号默认为80"></a>配置http协议所使用的访问地址,不加端口号默认为80</h6><p>external_url ‘<a target="_blank" rel="noopener" href="http://192.168.2.2&/#39;">http://192.168.2.2&#39;</a></p>
-<h6 id="配置ssh协议所使用的访问地址和端口"><a href="#配置ssh协议所使用的访问地址和端口" class="headerlink" title="配置ssh协议所使用的访问地址和端口"></a>配置ssh协议所使用的访问地址和端口</h6><p>gitlab_rails[‘gitlab_ssh_host’] = ‘192.168.2.2 ‘<br>gitlab_rails[‘gitlab_shell_ssh_port’] = 222 # 此端口是run时22端口映射的222端口<br>:wq #保存配置文件并退出<br>重启gitlab容器<br>$ docker restart gitlab<br>重置root密码<br>docker exec -it gitlab（容器名字） /bin/bash<br>启用docker里面gitlab的ruby<br>gitlab-rails console -e production<br> 找到管理员用户<br>user = User.where(id: 1).first<br> 更改密码<br>user.password = ‘abcd1234’<br>user.password_confirmation = ‘abcd1234’<br>记得保存<br>user.save!</p>
-<p>webhook配置</p>
-<ol>
-<li>   安装Generic Webhook Trigger插件</li>
-<li>   加入git的公钥到jenkins</li>
-<li>   生成key    ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#x35;&#x31;&#x37;&#x32;&#53;&#x33;&#55;&#48;&#x34;&#57;&#x40;&#49;&#54;&#51;&#x2e;&#99;&#111;&#109;">&#49;&#x35;&#x31;&#x37;&#x32;&#53;&#x33;&#55;&#48;&#x34;&#57;&#x40;&#49;&#54;&#51;&#x2e;&#99;&#111;&#109;</a>‘ cat ~/.ssh/id_rsa.pub</li>
-<li></li>
-<li></li>
-</ol>
-<p>配置apitoken，这里是后面APItoken的地址<br>6.     </p>
-<p>允许本地访问该地址  在menu-admin-setting-network<br>7.<br>8.    找到WebHooks配置界面，在POST地址框中输入如下格式内容：<br>9.<br>10.    http://<User ID>:<API Token>@&lt;Jenkins IP地址&gt;:端口/generic-webhook-trigger/invoke<br>11.    添加url<br><a target="_blank" rel="noopener" href="http://root:1148e42061461a8d68883794319c3dcd82@192.168.2.2:7005/generic-webhook-trigger/invoke">http://root:1148e42061461a8d68883794319c3dcd82@192.168.2.2:7005/generic-webhook-trigger/invoke</a></p>
-<p>配置固定ip地址<br>虚拟机安装Linux系列教材 （八）- 设置 Centos7 为固定ip地址 (how2j.cn)<br>需要注意编写ens33时候 onboot=yes<br>如果出现报错”Could not resolve host: mirrorlist.centos.org; Unknown error”<br>则在”Could not resolve host: mirrorlist.centos.org; Unknown error”解决方法 - Mr.Gavin - 博客园 (cnblogs.com)处理</p>
-<p>Ipv4转发（连接不上数据库）<br>2.开启转发配置</p>
-<p>vim /etc/sysctl.conf</p>
-<p>#配置转发<br>net.ipv4.ip_forward=1<br>#保存退出就可以了<br>:wq!<br>#重启服务，让配置生效<br>systemctl restart network</p>
+        <h2 id="Redis-持久化机制"><a href="#Redis-持久化机制" class="headerlink" title="Redis 持久化机制"></a>Redis 持久化机制</h2><p>很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。</p>
+<p>Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持两种不同的持久化操作。<strong>Redis 的一种持久化方式叫快照（snapshotting，RDB），另一种方式是只追加文件（append-only file, AOF）</strong>。这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。</p>
+<p><strong>快照（snapshotting）持久化（RDB）</strong></p>
+<p>Redis 可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis 创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis 主从结构，主要用来提高 Redis 性能），还可以将快照留在原地以便重启服务器的时候使用。</p>
+<p>快照持久化是 Redis 默认采用的持久化方式，在 Redis.conf 配置文件中默认有此下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br></pre></td></tr></table></figure>
+
+<p><strong>AOF（append-only file）持久化</strong></p>
+<p>与快照持久化相比，AOF 持久化的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<p>开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到内存缓存 <code>server.aof_buf</code> 中，然后再根据 <code>appendfsync</code> 配置来决定何时将其同步到硬盘中的 AOF 文件。</p>
+<p>AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数设置的，默认的文件名是 <code>appendonly.aof</code>。</p>
+<p>在 Redis 的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：<br>appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度<br>appendfsync everysec  #每秒钟同步一次，显式地将多个写命令同步到硬盘<br>appendfsync no        #让操作系统决定何时进行同步</p>
 
       
 
@@ -285,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/15/%E8%8B%A5%E4%BE%9D%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/07/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,15 +267,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/06/14/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
   
+    <a href="/2022/07/07/ThreadPoolExecutor%20%E7%B1%BB%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -324,6 +288,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6"><span class="toc-number">1.</span> <span class="toc-text">Redis 持久化机制</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
