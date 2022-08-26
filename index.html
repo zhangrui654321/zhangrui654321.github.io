@@ -152,6 +152,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-lamdba表达式的运用总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="lambda表达式总结（集合操作）"><a href="#lambda表达式总结（集合操作）" class="headerlink" title="lambda表达式总结（集合操作）"></a>lambda表达式总结（集合操作）</h1><h2 id="1-集合的排序"><a href="#1-集合的排序" class="headerlink" title="1.集合的排序"></a>1.集合的排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Comparator&lt;Hero&gt; comparator=<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Hero&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Hero o1, Hero o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> o1.getHp()-o2.getHp();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>先写一个comparator,根据age排序</p>
+<p>然后调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Hero&gt; sortHeroList=heroList.stream().sorted(comparator).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-最大最小值的属性以及具体元素"><a href="#2-最大最小值的属性以及具体元素" class="headerlink" title="2.最大最小值的属性以及具体元素"></a>2.最大最小值的属性以及具体元素</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hero maxAgeHero=heroList.stream().max(comparator).get();</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-去重"><a href="#3-去重" class="headerlink" title="3.去重"></a>3.去重</h2><h3 id="一般去重"><a href="#一般去重" class="headerlink" title="一般去重"></a>一般去重</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Hero&gt; heroeDistinct=heroList.stream().distinct().collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-求和"><a href="#4-求和" class="headerlink" title="4.求和"></a>4.求和</h2><h3 id="一般求和"><a href="#一般求和" class="headerlink" title="一般求和"></a>一般求和</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> sum=heroList.stream().mapToInt(Hero::getHp).sum();</span><br></pre></td></tr></table></figure>
+
+<p>大数类求和</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">BigDecimal</span> <span class="variable">totalQuantity</span> <span class="operator">=</span> bigDecimalList.stream().map(Hero::getHp).reduce(BigDecimal.ZERO,BigDecimal::add);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-分组"><a href="#5-分组" class="headerlink" title="5.分组"></a>5.分组</h2><p>根据某个属性分组并且转成Map&lt;String,List<Hero>&gt;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,List&lt;Hero&gt;&gt; groupMap=heroList.stream().collect(Collectors.groupingBy(Hero::getSex));</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-list转为map"><a href="#6-list转为map" class="headerlink" title="6.list转为map"></a>6.list转为map</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//list转为map,如果重复，则取k1的值</span></span><br><span class="line">Map&lt;Integer,Hero&gt; heroMap=heroList.stream().collect(Collectors.toMap(Hero::getHp,a-&gt;a,(k1,k2)-&gt;k1));</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-新的list"><a href="#7-新的list" class="headerlink" title="7. 新的list"></a>7. 新的list</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取某个值转为新的list</span></span><br><span class="line">List&lt;Integer&gt; heroAgeList=heroList.stream().map(a-&gt;a.getHp()).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-过滤"><a href="#8-过滤" class="headerlink" title="8.过滤"></a>8.过滤</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Hero&gt; heroList1=heroList.stream().filter(hero -&gt; hero.getHp()&lt;<span class="number">300</span>&amp;&amp;hero.getHp()&gt;<span class="number">100</span>).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>表达式主要分为中间过程和结束操作</p>
+<h3 id="零个或多个中间操作：-每个中间操作会返回一个流，如filter-中间操作时懒操作，不会真正遍历"><a href="#零个或多个中间操作：-每个中间操作会返回一个流，如filter-中间操作时懒操作，不会真正遍历" class="headerlink" title="零个或多个中间操作： 每个中间操作会返回一个流，如filter,中间操作时懒操作，不会真正遍历"></a>零个或多个中间操作： 每个中间操作会返回一个流，如filter,中间操作时懒操作，不会真正遍历</h3><p>​     中间操作有很多种，主要分为两种：</p>
+<p>​     1.<strong>对元素进行筛选</strong>：filter（匹配），distinct（去除重复）,sorted（自然排序）</p>
+<p>​                     sorted(Comparator)（指定排序），limit（保留），skip（忽略）</p>
+<p>​     2.<strong>转为其他形式的流</strong>：mapToDouble（转为double的流）, map（转换为任意类型的流）</p>
+<h3 id="结束操作：-例如forEach，会返回非流结果，例如基本类型的值（int-float-double）、对象或者集合，或者在终端操作为forEach的情况下没有返回值。"><a href="#结束操作：-例如forEach，会返回非流结果，例如基本类型的值（int-float-double）、对象或者集合，或者在终端操作为forEach的情况下没有返回值。" class="headerlink" title="结束操作： 例如forEach，会返回非流结果，例如基本类型的值（int,float,double）、对象或者集合，或者在终端操作为forEach的情况下没有返回值。"></a>结束操作： 例如forEach，会返回非流结果，例如基本类型的值（int,float,double）、对象或者集合，或者在终端操作为forEach的情况下没有返回值。</h3><p>​     结束操作时才真正进行遍历行为，前面的中间操作也在这个时候真正的执行。</p>
+<p>​     常见的结束操作如下：</p>
+<p>​      forEach()（遍历每个元素），toArray()（转换为数组），min(Comparator)（取最小的元素）</p>
+<p>​      max(Comparator)（取最大的元素），count()（总数），findFirst()（第一个元素）.get(). </p>
+<p>以及Collectors.toList()转为list</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/26/lamdba%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BF%90%E7%94%A8%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-dockers部署jenkins和gitlab总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -169,7 +250,7 @@
 <p> 首先生成公钥</p>
 <p>进入jinkins容器后执行</p>
 <p>docker exec -it jenkins bash</p>
-<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#x35;&#48;&#49;&#x39;&#52;&#x37;&#52;&#x39;&#x35;&#49;&#64;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;">&#49;&#x35;&#48;&#49;&#x39;&#52;&#x37;&#52;&#x39;&#x35;&#49;&#64;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;</a>’</p>
+<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#53;&#x30;&#x31;&#x39;&#x34;&#55;&#52;&#x39;&#53;&#x31;&#x40;&#x31;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#53;&#x30;&#x31;&#x39;&#x34;&#55;&#52;&#x39;&#53;&#x31;&#x40;&#x31;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a>’</p>
 <p>cat ~/.ssh/id_rsa.pub</p>
 <h4 id="将公钥填入"><a href="#将公钥填入" class="headerlink" title="将公钥填入"></a>将公钥填入</h4><p><img src="images/20220822-2.png"></p>
 <p>新建一个自由风格项目</p>
@@ -187,7 +268,7 @@
 <p>这里的shell命令就是删除原来的进程然后构建</p>
 <h2 id="webhook配置"><a href="#webhook配置" class="headerlink" title="webhook配置"></a>webhook配置</h2><h4 id="webhook配置-1"><a href="#webhook配置-1" class="headerlink" title="webhook配置"></a>webhook配置</h4><p>\1.   安装<strong>Generic Webhook Trigger</strong>插件</p>
 <p>\2.   加入git的公钥到jenkins</p>
-<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#53;&#x31;&#55;&#50;&#53;&#x33;&#55;&#48;&#52;&#57;&#64;&#x31;&#x36;&#x33;&#46;&#x63;&#111;&#x6d;">&#49;&#53;&#x31;&#55;&#50;&#53;&#x33;&#55;&#48;&#52;&#57;&#64;&#x31;&#x36;&#x33;&#46;&#x63;&#111;&#x6d;</a>‘ cat ~/.ssh/id_rsa.pub</p>
+<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#x31;&#53;&#49;&#x37;&#50;&#53;&#x33;&#x37;&#x30;&#x34;&#x39;&#64;&#x31;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;">&#x31;&#53;&#49;&#x37;&#50;&#53;&#x33;&#x37;&#x30;&#x34;&#x39;&#64;&#x31;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;</a>‘ cat ~/.ssh/id_rsa.pub</p>
 <p>\4.    将构建触发器勾上!<img src="images/20220822-9.png"></p>
 <p>\5.                 </p>
 <p>配置apitoken，这里是后面APItoken的地址</p>
@@ -262,7 +343,7 @@
         <h1 id="部署ruoyi前后端分离版"><a href="#部署ruoyi前后端分离版" class="headerlink" title="部署ruoyi前后端分离版"></a>部署ruoyi前后端分离版</h1><h3 id="此步骤在不分离版后延续"><a href="#此步骤在不分离版后延续" class="headerlink" title="此步骤在不分离版后延续"></a>此步骤在不分离版后延续</h3><h3 id="redis启动"><a href="#redis启动" class="headerlink" title="redis启动"></a>redis启动</h3><p>docker pull redis:latest<br>docker run -d –rm -v /root/redis/data:/data –name redis -p 6379:6379 redis  redis-server  –appendonly yes</p>
 <h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><p>cd /data/tmp<br>tar -zxvf node-v14.15.5-linux-x64.tar.gz<br>mv node-v14.15.5-linux-x64 /data/service<br>cd /data/service<br>ll<br>配置环境变量<br>vim /etc/profile<br>export NODEJS_HOME=/data/service/node-v14.15.5-linux-x64<br>export PATH=$PATH:$NODEJS_HOME/bin<br>source /etc/profile</p>
 <h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>cd /data/tmp<br>tar zxvf nginx-1.18.0.tar.gz<br>cd nginx-1.18.0<br>./configure –prefix=/data/service/ngnix<br>make &amp;&amp; make install<br>/data/service/ngnix/sbin/nginx</p>
-<h3 id="git拉代码并修改配置文件，打包"><a href="#git拉代码并修改配置文件，打包" class="headerlink" title="git拉代码并修改配置文件，打包"></a>git拉代码并修改配置文件，打包</h3><p>cd /data/gitee<br>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#101;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#101;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a>:y_project/RuoYi-Vue.git<br>cd /data/gitee/RuoYi-Vue/ruoyi-admin/src/main/resources/<br>#修改application.yml的项目启动端口号与文件上传路径<br>vim application.yml<br>#修改application-druid.yml的数据源<br>vim application-druid.yml<br>cd /data/gitee/RuoYi-Vue/<br>mvn clean install -pl com.ruoyi:ruoyi-admin -am<br>mkdir -p /data/app/ruoyi-vue<br>cp /data/gitee/RuoYi-Vue/ruoyi-admin/target/ruoyi-admin.jar /data/app/ruoyi-vue/ruoyi-admin.jar<br>cd /data/app/ruoyi-vue/<br>#后台启动项目<br>nohup java -jar ruoyi-admin.jar &amp;<br>#查看项目运行日志<br>tail -f nohup.out</p>
+<h3 id="git拉代码并修改配置文件，打包"><a href="#git拉代码并修改配置文件，打包" class="headerlink" title="git拉代码并修改配置文件，打包"></a>git拉代码并修改配置文件，打包</h3><p>cd /data/gitee<br>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x65;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x65;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a>:y_project/RuoYi-Vue.git<br>cd /data/gitee/RuoYi-Vue/ruoyi-admin/src/main/resources/<br>#修改application.yml的项目启动端口号与文件上传路径<br>vim application.yml<br>#修改application-druid.yml的数据源<br>vim application-druid.yml<br>cd /data/gitee/RuoYi-Vue/<br>mvn clean install -pl com.ruoyi:ruoyi-admin -am<br>mkdir -p /data/app/ruoyi-vue<br>cp /data/gitee/RuoYi-Vue/ruoyi-admin/target/ruoyi-admin.jar /data/app/ruoyi-vue/ruoyi-admin.jar<br>cd /data/app/ruoyi-vue/<br>#后台启动项目<br>nohup java -jar ruoyi-admin.jar &amp;<br>#查看项目运行日志<br>tail -f nohup.out</p>
 <h3 id="启动前端项目"><a href="#启动前端项目" class="headerlink" title="启动前端项目"></a>启动前端项目</h3><p>1、下载依赖并打包<br>cd /data/gitee/RuoYi-Vue/ruoyi-ui<br>npm install –registry=<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com</a><br>npm install<br>mkdir /data/app/ruoyi-ui<br>mv dist/* /data/app/ruoyi-ui/</p>
 <h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3><p>此处/代表根目录 root配置的dist的明确地址</p>
 <p>/prod-api/配置的是转发路径，及前端请求都转发到 localhost:18081地址</p>
@@ -319,7 +400,7 @@
 <h3 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h3><p>java<br>cd /data/tmp<br>tar -zxvf jdk-8u212-linux-x64.tar.gz<br>mv jdk1.8.0_212 /data/service<br>cd /data/service<br>ll<br>vim /etc/profile<br>export JAVA_HOME=/data/service/jdk1.8.0_212<br>export PATH=$PATH:$JAVA_HOME/bin<br>source /etc/profile</p>
 <h3 id="安装maven"><a href="#安装maven" class="headerlink" title="安装maven"></a>安装maven</h3><p>cd /data/tmp<br>tar -zxvf apache-maven-3.8.5-bin.tar.gz<br>mv apache-maven-3.8.5 /data/service<br>cd /data/service<br>ll<br>vim /etc/profile<br>export MAVEN_HOME=/data/service/apache-maven-3.8.5<br>export PATH=$PATH:$MAVEN_HOME/bin<br>source /etc/profile<br>vim /data/service/apache-maven-3.8.5/conf/setting.xml<br>#配置本地仓库<br><localRepository>/data/service/apache-maven-3.8.5/repository</localRepository><br>#配置阿里云镜像<br><mirror><br>  <id>aliyunmaven</id><br>  <mirrorOf>*</mirrorOf><br>  <name>阿里云公共仓库</name><br>  <url><a target="_blank" rel="noopener" href="https://maven.aliyun.com/repository/public">https://maven.aliyun.com/repository/public</a></url><br></mirror></p>
 <h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>yum -y groupinstall “Development Tools”<br>yum install wget unzip gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel libcurl-devel expat-devel -y<br>cd /data/tmp<br>tar zxvf git-2.18.0.tar.gz<br>cd git-2.18.0<br>./configure –prefix=/data/service/git<br>make &amp;&amp; make install<br>vim /etc/profile<br>export GIT_HOME=/data/service/git<br>export PATH=$PATH:$GIT_HOME/bin<br>source /etc/profile</p>
-<h3 id="git公钥，和下载项目"><a href="#git公钥，和下载项目" class="headerlink" title="git公钥，和下载项目"></a>git公钥，和下载项目</h3><p>git密匙<br>ssh-keygen -t rsa -C “<a href="mailto:&#49;&#53;&#x31;&#55;&#x32;&#x35;&#51;&#55;&#48;&#x34;&#57;&#64;&#49;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;">&#49;&#53;&#x31;&#55;&#x32;&#x35;&#51;&#55;&#48;&#x34;&#57;&#64;&#49;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;</a>“<br>cat ~/.ssh/id_rsa.pub<br>//粘到公匙<br>ssh -T <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x65;&#101;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x65;&#101;&#x2e;&#x63;&#111;&#x6d;</a><br>cd /data/gitee<br>git clone <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#101;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#x74;&#101;&#101;&#x2e;&#99;&#x6f;&#x6d;</a>:y_project/RuoYi.git</p>
+<h3 id="git公钥，和下载项目"><a href="#git公钥，和下载项目" class="headerlink" title="git公钥，和下载项目"></a>git公钥，和下载项目</h3><p>git密匙<br>ssh-keygen -t rsa -C “<a href="mailto:&#x31;&#x35;&#49;&#55;&#x32;&#53;&#x33;&#55;&#48;&#52;&#57;&#x40;&#49;&#54;&#x33;&#x2e;&#x63;&#111;&#109;">&#x31;&#x35;&#49;&#55;&#x32;&#53;&#x33;&#55;&#48;&#52;&#57;&#x40;&#49;&#54;&#x33;&#x2e;&#x63;&#111;&#109;</a>“<br>cat ~/.ssh/id_rsa.pub<br>//粘到公匙<br>ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#x65;&#101;&#46;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#x65;&#101;&#46;&#x63;&#111;&#109;</a><br>cd /data/gitee<br>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#101;&#x65;&#x2e;&#99;&#x6f;&#109;">&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#101;&#x65;&#x2e;&#99;&#x6f;&#109;</a>:y_project/RuoYi.git</p>
 <h3 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h3><p>docker安装<br>sudo yum remove docker <br>                  docker-client <br>                  docker-client-latest <br>                  docker-common <br>                  docker-latest <br>                  docker-latest-logrotate <br>                  docker-logrotate <br>                  docker-engine<br>sudo yum install -y yum-utils device-mapper-persistent-data lvm2<br>sudo yum-config-manager <br>    –add-repo <br>    <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br>yum install -y <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm">https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</a><br>yum install docker-ce docker-ce-cli -y<br>sudo mkdir -p /etc/docker<br>sudo tee /etc/docker/daemon.json &lt;&lt;-‘EOF’<br>{<br>  “registry-mirrors”: [“<a href="https://plb9xzjh.mirror.aliyuncs.com&quot;]">https://plb9xzjh.mirror.aliyuncs.com&quot;]</a><br>}<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker</p>
 <h3 id="mysql安装"><a href="#mysql安装" class="headerlink" title="mysql安装"></a>mysql安装</h3><p>docker pull mysql:5.7.30<br>mkdir -p /root/mysql/data /root/mysql/logs /root/mysql/conf<br>touch /root/mysql/conf/my.cnf<br>//密码是admin，-v则是挂载 –name容器名字，作为后面的启动删除名字<br>docker run -p 3306:3306 –rm –name mysql -v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/var/log/mysql -v /root/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7.30<br>docker start mysql<br>//进入容器<br>docker exec -it mysql /bin/bash<br>#登录docker容器（方式参考上方文档）后登录mysql<br>mysql -uroot -padmin<br>#修改登录者的权限<br>GRANT ALL ON <em>.</em> TO ‘root‘@’%’;<br>#刷新命令生效<br> flush privileges;</p>
 <h3 id="修改项目配置"><a href="#修改项目配置" class="headerlink" title="修改项目配置"></a>修改项目配置</h3><p>cd /data/gitee/RuoYi/ruoyi-admin/src/main/resources/<br>#修改application.yml的项目启动端口号与文件上传路径<br>vim application.yml<br>#修改application-druid.yml的数据源<br>vim application-druid.yml</p>
@@ -736,60 +817,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/07/ThreadPoolExecutor%20%E7%B1%BB%E5%88%86%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-递归的一点思考" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="递归的一点思考"><a href="#递归的一点思考" class="headerlink" title="递归的一点思考"></a><strong>递归的一点思考</strong></h2><p>递归就是将大问题转化为小问题的一种思路。</p>
-<p>它有两个特点，</p>
-<p>1.重复调用自身函数</p>
-<p>2.有终结条件</p>
-<p>例如leetcode题目二叉树的中序遍历就可用递归</p>
-<p><img src="E:\javaProject\hexo\source\images\220707-1.png"></p>
-<p><img src="images/220707-1.png"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/07/%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/">展开全文 >></a>
         </p>
       
 
