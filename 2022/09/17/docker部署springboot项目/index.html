@@ -8,20 +8,23 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="线程池总结ThreadPoolExecutor 3 个最重要的参数：  corePoolSize : 核心线程数线程数定义了最小可以同时运行的线程数量。  maximumPoolSize : 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。  workQueue: 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。">
+  <meta name="description" content="docker部署springboot项目本文主要介绍docker如何部署springboot项目 创建一个springboot项目，打包成jar包该项目端口为8081，logback日志目录为&#x2F;home&#x2F;docker&#x2F;logs  准备一台搭建好了docker的linux服务器linux搭建docker攻略移步：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lixianguo&#x2F;p&#x2F;13254950">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2022/07/07/ThreadPoolExecutor%20%E7%B1%BB%E5%88%86%E6%9E%90/index.html">
+<meta property="og:url" content="http://example.com/2022/09/17/docker%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="线程池总结ThreadPoolExecutor 3 个最重要的参数：  corePoolSize : 核心线程数线程数定义了最小可以同时运行的线程数量。  maximumPoolSize : 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。  workQueue: 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。">
+<meta property="og:description" content="docker部署springboot项目本文主要介绍docker如何部署springboot项目 创建一个springboot项目，打包成jar包该项目端口为8081，logback日志目录为&#x2F;home&#x2F;docker&#x2F;logs  准备一台搭建好了docker的linux服务器linux搭建docker攻略移步：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;lixianguo&#x2F;p&#x2F;13254950">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="e:/javaProject/hexo/source/images/220707-2.png">
-<meta property="og:image" content="http://example.com/images/220707-2.png">
-<meta property="article:published_time" content="2022-07-07T11:59:47.199Z">
-<meta property="article:modified_time" content="2022-07-07T12:25:56.716Z">
+<meta property="og:image" content="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415153310412-1698748435.png">
+<meta property="og:image" content="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415154509479-1294761548.png">
+<meta property="og:image" content="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415160735560-359695528.png">
+<meta property="og:image" content="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415162800983-219739236.png">
+<meta property="og:image" content="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415162939731-510580576.png">
+<meta property="article:published_time" content="2022-09-17T12:34:13.529Z">
+<meta property="article:modified_time" content="2022-09-17T14:25:04.647Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="e:/javaProject/hexo/source/images/220707-2.png">
+<meta name="twitter:image" content="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415153310412-1698748435.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -157,30 +160,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ThreadPoolExecutor 类分析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-docker部署springboot项目" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="线程池总结"><a href="#线程池总结" class="headerlink" title="线程池总结"></a>线程池总结</h2><p><strong><code>ThreadPoolExecutor</code> 3 个最重要的参数：</strong></p>
-<ul>
-<li><p><strong><code>corePoolSize</code> :</strong> 核心线程数线程数定义了最小可以同时运行的线程数量。</p>
-</li>
-<li><p><strong><code>maximumPoolSize</code> :</strong> 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。</p>
-</li>
-<li><p><strong><code>workQueue</code>:</strong> 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。</p>
-<h5 id="线程池的执行策略"><a href="#线程池的执行策略" class="headerlink" title="线程池的执行策略"></a>线程池的执行策略</h5><p><img src="E:\javaProject\hexo\source\images\220707-2.png"></p>
-<p><img src="/images/220707-2.png"></p>
-<h5 id="线程池和callable一起使用，一般用来有返回值得类型"><a href="#线程池和callable一起使用，一般用来有返回值得类型" class="headerlink" title="线程池和callable一起使用，一般用来有返回值得类型"></a>线程池和callable一起使用，一般用来有返回值得类型</h5><p>第一 创建线程池</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(9, 9, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>​        第二 重写callable方法</p>
-<p>​        Callable<List> bannerListCallable = () -&gt; adService.queryIndex();</p>
-<p>​        第三步 调用线程池submit方法，获取future对象</p>
-<p>​        Future<List> banner=executorService.submit(bannerListCallable);</p>
-<p>​        第四步，调用future.get方法获取返回值</p>
-<p>​        Map&lt;String, Object&gt; entity = new HashMap&lt;&gt;();</p>
-<p>​        entity.put(“banner”, banner.get());</p>
+        <h1 id="docker部署springboot项目"><a href="#docker部署springboot项目" class="headerlink" title="docker部署springboot项目"></a>docker部署springboot项目</h1><p>本文主要介绍docker如何部署springboot项目</p>
+<h4 id="创建一个springboot项目，打包成jar包"><a href="#创建一个springboot项目，打包成jar包" class="headerlink" title="创建一个springboot项目，打包成jar包"></a>创建一个springboot项目，打包成jar包</h4><p>该项目端口为8081，logback日志目录为/home/docker/logs</p>
+<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415153310412-1698748435.png" alt="img"></p>
+<h4 id="准备一台搭建好了docker的linux服务器"><a href="#准备一台搭建好了docker的linux服务器" class="headerlink" title="准备一台搭建好了docker的linux服务器"></a>准备一台搭建好了docker的linux服务器</h4><p>linux搭建docker攻略移步：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lixianguo/p/13254950.html">https://www.cnblogs.com/lixianguo/p/13254950.html</a><br>创建/home/docker文件夹，将打包的jar包上传<br>创建/home/docker/logs文件夹存放日志文件，该路径与项目中logback中设置的一致<br>创建Dockerfile,内容如下</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定基础镜像，不需要另外安装jdk</span></span><br><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"><span class="comment">#维护者</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> lxg</span><br><span class="line"><span class="comment">#将本地文件添加到容器中，并更名为myproject.jar</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> springboot-docker-1.0-SNAPSHOT.jar myproject.jar</span></span><br><span class="line"><span class="comment">#指定访问端口，与yml文件中的端口一致</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8081</span></span><br><span class="line"><span class="comment">#容器启动时，运行该程序</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;myproject.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>目录截图如下</p>
+<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415154509479-1294761548.png" alt="img"></p>
+<h4 id="使用命令构建镜像"><a href="#使用命令构建镜像" class="headerlink" title="使用命令构建镜像"></a>使用命令构建镜像</h4><p>最后空格和”.”不可忽略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t myproject .</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415160735560-359695528.png" alt="img"></p>
+<h4 id="创建并启动容器"><a href="#创建并启动容器" class="headerlink" title="创建并启动容器"></a>创建并启动容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 8080:8081 --name myproject \</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">-v /home/docker/logs:/home/docker/logs \</span></span><br><span class="line"><span class="language-bash">&gt; -d myproject</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415162800983-219739236.png" alt="img"></p>
+<p>8080是外界访问的端口，可以自定义，8081是Dockerfile中定义的端口。<br>-v是为了将容器中的日志目录挂载出来，冒号之前是linux宿主机自己创建的目录，可以自定义。后面的是logback文件中定义的输出日志的目录。</p>
+<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415162939731-510580576.png" alt="img"></p>
 
       
 
@@ -260,7 +261,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/07/ThreadPoolExecutor%20%E7%B1%BB%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/09/17/docker%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,7 +275,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/07/07/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/01/16/git%20%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -284,7 +285,7 @@
     </a>
   
   
-    <a href="/2022/07/07/%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/08/26/lamdba%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BF%90%E7%94%A8%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
@@ -312,7 +313,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">线程池总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">线程池的执行策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8Ccallable%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8%EF%BC%8C%E4%B8%80%E8%88%AC%E7%94%A8%E6%9D%A5%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC%E5%BE%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">线程池和callable一起使用，一般用来有返回值得类型</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">docker部署springboot项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAspringboot%E9%A1%B9%E7%9B%AE%EF%BC%8C%E6%89%93%E5%8C%85%E6%88%90jar%E5%8C%85"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">创建一个springboot项目，打包成jar包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%B8%80%E5%8F%B0%E6%90%AD%E5%BB%BA%E5%A5%BD%E4%BA%86docker%E7%9A%84linux%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">准备一台搭建好了docker的linux服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">使用命令构建镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">创建并启动容器</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

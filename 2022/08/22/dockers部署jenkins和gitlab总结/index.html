@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-11.png">
 <meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-12.png">
 <meta property="article:published_time" content="2022-08-22T01:14:42.339Z">
-<meta property="article:modified_time" content="2022-08-22T03:23:12.193Z">
+<meta property="article:modified_time" content="2023-02-14T01:40:43.571Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-1.png">
@@ -181,7 +181,7 @@
 <p> 首先生成公钥</p>
 <p>进入jinkins容器后执行</p>
 <p>docker exec -it jenkins bash</p>
-<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#53;&#x30;&#x31;&#x39;&#x34;&#55;&#52;&#x39;&#53;&#x31;&#x40;&#x31;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#53;&#x30;&#x31;&#x39;&#x34;&#55;&#52;&#x39;&#53;&#x31;&#x40;&#x31;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a>’</p>
+<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#x35;&#48;&#49;&#57;&#x34;&#x37;&#x34;&#x39;&#53;&#x31;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#111;&#x6d;">&#49;&#x35;&#48;&#49;&#57;&#x34;&#x37;&#x34;&#x39;&#53;&#x31;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#111;&#x6d;</a>’</p>
 <p>cat ~/.ssh/id_rsa.pub</p>
 <h4 id="将公钥填入"><a href="#将公钥填入" class="headerlink" title="将公钥填入"></a>将公钥填入</h4><p><img src="images/20220822-2.png"></p>
 <p>新建一个自由风格项目</p>
@@ -199,7 +199,7 @@
 <p>这里的shell命令就是删除原来的进程然后构建</p>
 <h2 id="webhook配置"><a href="#webhook配置" class="headerlink" title="webhook配置"></a>webhook配置</h2><h4 id="webhook配置-1"><a href="#webhook配置-1" class="headerlink" title="webhook配置"></a>webhook配置</h4><p>\1.   安装<strong>Generic Webhook Trigger</strong>插件</p>
 <p>\2.   加入git的公钥到jenkins</p>
-<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#x31;&#53;&#49;&#x37;&#50;&#53;&#x33;&#x37;&#x30;&#x34;&#x39;&#64;&#x31;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;">&#x31;&#53;&#49;&#x37;&#50;&#53;&#x33;&#x37;&#x30;&#x34;&#x39;&#64;&#x31;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;</a>‘ cat ~/.ssh/id_rsa.pub</p>
+<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#x31;&#x35;&#x31;&#x37;&#x32;&#53;&#51;&#55;&#48;&#52;&#x39;&#64;&#x31;&#54;&#x33;&#46;&#99;&#x6f;&#109;">&#x31;&#x35;&#x31;&#x37;&#x32;&#53;&#51;&#55;&#48;&#52;&#x39;&#64;&#x31;&#54;&#x33;&#46;&#99;&#x6f;&#109;</a>‘ cat ~/.ssh/id_rsa.pub</p>
 <p>\4.    将构建触发器勾上!<img src="images/20220822-9.png"></p>
 <p>\5.                 </p>
 <p>配置apitoken，这里是后面APItoken的地址</p>
@@ -212,17 +212,18 @@
 <p>\3.   http://<User ID>:<API Token>@&lt;Jenkins IP地址&gt;:端口/generic-webhook-trigger/invoke </p>
 <p>\4.   添加url</p>
 <p><a target="_blank" rel="noopener" href="http://root:1148e42061461a8d68883794319c3dcd82@192.168.2.2:7005/generic-webhook-trigger/invoke">http://root:1148e42061461a8d68883794319c3dcd82@192.168.2.2:7005/generic-webhook-trigger/invoke</a></p>
-<h2 id="配置gitlab"><a href="#配置gitlab" class="headerlink" title="配置gitlab"></a>配置gitlab</h2><h3 id="拉docker-并启动"><a href="#拉docker-并启动" class="headerlink" title="拉docker 并启动"></a>拉docker 并启动</h3><p>docker pull gitlab/gitlab-ce<br>docker run -d  -p 443:443 -p 80:80 -p 222:22 –name gitlab –restart always -v /root/gitlab/config:/etc/gitlab -v /root/gitlab/logs:/var/log/gitlab -v /root/gitlab/data:/var/opt/gitlab gitlab/gitlab-ce</p>
+<h2 id="配置gitlab"><a href="#配置gitlab" class="headerlink" title="配置gitlab"></a>配置gitlab</h2><h3 id="拉docker-并启动"><a href="#拉docker-并启动" class="headerlink" title="拉docker 并启动"></a>拉docker 并启动</h3><p>docker pull gitlab/gitlab-ce<br>docker run -d  -p 443:443 -p 81:80 -p 222:22 –name gitlab –restart always -v /root/gitlab/config:/etc/gitlab -v /root/gitlab/logs:/var/log/gitlab -v /root/gitlab/data:/var/opt/gitlab gitlab/gitlab-ce</p>
 <h4 id="配置启动路径"><a href="#配置启动路径" class="headerlink" title="配置启动路径"></a>配置启动路径</h4><p>gitlab.rb文件内容默认全是注释</p>
 <p>$ vim /root/gitlab/config/gitlab.rb</p>
 <p>配置http协议所使用的访问地址,不加端口号默认为80</p>
 <p>external_url ‘<a target="_blank" rel="noopener" href="http://192.168.2.7&/#39;">http://192.168.2.7&#39;</a></p>
+<p>external_url ‘<a target="_blank" rel="noopener" href="http://120.77.247.123&/#39;">http://120.77.247.123&#39;</a></p>
 <p>配置ssh协议所使用的访问地址和端口</p>
 <p>gitlab_rails[‘gitlab_ssh_host’] = ‘192.168.2.7 ‘<br>gitlab_rails[‘gitlab_shell_ssh_port’] = 222 # 此端口是run时22端口映射的222端口<br>:wq #保存配置文件并退出<br>重启gitlab容器</p>
 <p>$ docker restart gitlab<br>GitLab占用内存非常恐怖，解决方法很简单<br>     修改/root/gitlab/config/gitlab/gitlab.rb 文件，将 unicorn[‘worker_processes’] = 2 去掉注释就可以了。在注释的情况下默认是服务器上的所有线程。</p>
-<h3 id="重置root密码"><a href="#重置root密码" class="headerlink" title="重置root密码"></a>重置root密码</h3><p>docker exec -it gitlab（容器名字） /bin/bash<br>启用docker里面gitlab的ruby</p>
+<h3 id="重置root密码"><a href="#重置root密码" class="headerlink" title="重置root密码"></a>重置root密码</h3><p>docker exec -it gitlab /bin/bash<br>启用docker里面gitlab的ruby</p>
 <h4 id="注意，这里一定要等到控制台打印信息后才能输入下面的user"><a href="#注意，这里一定要等到控制台打印信息后才能输入下面的user" class="headerlink" title="注意，这里一定要等到控制台打印信息后才能输入下面的user"></a>注意，这里一定要等到控制台打印信息后才能输入下面的user</h4><p>gitlab-rails console -e production</p>
-<p> 找到管理员用户<br>user = User.where(id: 1).first<br> 更改密码<br>user.password = ‘abc1234’<br>user.password_confirmation = ‘abc1234’<br>记得保存<br>user.save!</p>
+<p> 找到管理员用户<br>user = User.where(id: 1).first<br> 更改密码<br>user.password = ‘abcd1234’<br>user.password_confirmation = ‘abcd1234’<br>记得保存<br>user.save!</p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>​                               </p>
 
       
@@ -384,7 +385,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 John Doe
+    		&copy; 2023 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
