@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="#新增商品vue总结 12345678#elemtent 组件#card先展示表单卡片&lt;el-card class&#x3D;&quot;box-card&quot;&gt;    这里可以定义继续欧雁规则rules    &lt;el-form ref&#x3D;&quot;goods&quot; :rules&#x3D;&quot;rules&quot; :model&#x3D;&quot;goods&quot; label-">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+<meta property="og:url" content="http://example.com/2023/04/19/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81vue%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#新增商品vue总结 12345678#elemtent 组件#card先展示表单卡片&lt;el-card class&#x3D;&quot;box-card&quot;&gt;    这里可以定义继续欧雁规则rules    &lt;el-form ref&#x3D;&quot;goods&quot; :rules&#x3D;&quot;rules&quot; :model&#x3D;&quot;goods&quot; label-">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-19T15:25:03.059Z">
+<meta property="article:modified_time" content="2023-04-19T15:25:03.062Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,245 +154,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-新增商品vue总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#新增商品vue总结</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#elemtent 组件</span><br><span class="line"></span><br><span class="line">#card先展示表单卡片</span><br><span class="line">&lt;el-card <span class="keyword">class</span>=<span class="string">&quot;box-card&quot;</span>&gt;</span><br><span class="line">    这里可以定义继续欧雁规则rules</span><br><span class="line">    &lt;el-form ref=<span class="string">&quot;goods&quot;</span> :rules=<span class="string">&quot;rules&quot;</span> :model=<span class="string">&quot;goods&quot;</span> label-width=<span class="string">&quot;150px&quot;</span>&gt;&lt;/el-<span class="keyword">from</span>&gt;</span><br><span class="line">&lt;/el-card&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>##item表单明细用 prop展示属性，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=<span class="string">&quot;市场售价&quot;</span> prop=<span class="string">&quot;counterPrice&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;goods.counterPrice&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;0.00&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">&quot;append&quot;</span>&gt;</span>元<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>##radio 展示单选组件，label是绑定值的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    &lt;el-form-item label=<span class="string">&quot;是否热卖&quot;</span> prop=<span class="string">&quot;isHot&quot;</span>&gt;</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">el-radio-group</span> <span class="attr">v-model</span>=<span class="string">&quot;goods.isHot&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">el-radio</span> <span class="attr">:label</span>=<span class="string">&quot;false&quot;</span>&gt;</span>普通<span class="tag">&lt;/<span class="name">el-radio</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">el-radio</span> <span class="attr">:label</span>=<span class="string">&quot;true&quot;</span>&gt;</span>热卖<span class="tag">&lt;/<span class="name">el-radio</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">el-radio-group</span>&gt;</span></span></span><br><span class="line">    &lt;/el-form-item&gt;   </span><br><span class="line">&lt;/el-form-item&gt;</span><br></pre></td></tr></table></figure>
+
+<p>###upload上传图片，这里action  是请求后端的路径，on-exceed是超出数量限制方法，success是成功后方法，这里成功后<br>####直接将file的路径加入到gallery</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=<span class="string">&quot;宣传画廊&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">el-upload</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">:action</span>=<span class="string">&quot;uploadPath&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">:limit</span>=<span class="string">&quot;5&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">:headers</span>=<span class="string">&quot;headers&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">:on-exceed</span>=<span class="string">&quot;uploadOverrun&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">:on-success</span>=<span class="string">&quot;handleGalleryUrl&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">:on-remove</span>=<span class="string">&quot;handleRemove&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">multiple</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">accept</span>=<span class="string">&quot;.jpg,.jpeg,.png,.gif&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"><span class="attr">list-type</span>=<span class="string">&quot;picture-card&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-plus&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">el-upload</span>&gt;</span></span></span><br><span class="line">&lt;/el-form-item&gt;</span><br><span class="line"><span class="title function_">handleGalleryUrl</span>(<span class="params">response, file, fileList</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (response.<span class="property">errno</span> === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">goods</span>.<span class="property">gallery</span>.<span class="title function_">push</span>(response.<span class="property">data</span>.<span class="property">url</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>###增加按钮实现，点击增加，是newKeywordVisible的值改变为true，让input组件显示，值默认是false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=<span class="string">&quot;关键字&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">v-for</span>=<span class="string">&quot;tag in keywords&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;tag&quot;</span> <span class="attr">closable</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">close</span>=<span class="string">&quot;handleClose(tag)&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;&#123; tag &#125;&#125;</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">el-input</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">v-if</span>=<span class="string">&quot;newKeywordVisible&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">ref</span>=<span class="string">&quot;newKeywordInput&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">v-model</span>=<span class="string">&quot;newKeyword&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">class</span>=<span class="string">&quot;input-new-keyword&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    @<span class="attr">keyup.enter.native</span>=<span class="string">&quot;handleInputConfirm&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    @<span class="attr">blur</span>=<span class="string">&quot;handleInputConfirm&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    /&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">el-button</span> <span class="attr">v-else</span> <span class="attr">class</span>=<span class="string">&quot;button-new-keyword&quot;</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;showInput&quot;</span>&gt;</span>+ 增加<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line">&lt;/el-form-item&gt;</span><br></pre></td></tr></table></figure>
+<p>####增加调用showInput方法，这里this.$refs绑定的路由，this.$nextTick表示立即执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">showInput</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">newKeywordVisible</span> = <span class="literal">true</span></span><br><span class="line">      <span class="variable language_">this</span>.$nextTick(<span class="function"><span class="params">_</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">newKeywordInput</span>.<span class="property">$refs</span>.<span class="property">input</span>.<span class="title function_">focus</span>()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>####当调用@keyup.enter.native表示点击输入事件，执行handleInputConfirm方法，此方法就是将newKeyword的值传入keywords，最后keywords</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">handleInputConfirm</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="keyword">const</span> newKeyword = <span class="variable language_">this</span>.<span class="property">newKeyword</span></span><br><span class="line"><span class="keyword">if</span> (newKeyword) &#123;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">keywords</span>.<span class="title function_">push</span>(newKeyword)</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">goods</span>.<span class="property">keywords</span> = <span class="variable language_">this</span>.<span class="property">keywords</span>.<span class="title function_">toString</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">newKeywordVisible</span> = <span class="literal">false</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">newKeyword</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>####树形组件和普通下拉</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=<span class="string">&quot;所属分类&quot;</span>&gt;</span><br><span class="line">         <span class="language-xml"><span class="tag">&lt;<span class="name">el-cascader</span> <span class="attr">:options</span>=<span class="string">&quot;categoryList&quot;</span> <span class="attr">expand-trigger</span>=<span class="string">&quot;hover&quot;</span> <span class="attr">clearable</span> @<span class="attr">change</span>=<span class="string">&quot;handleCategoryChange&quot;</span> /&gt;</span></span></span><br><span class="line">       &lt;/el-form-item&gt;</span><br><span class="line"></span><br><span class="line">       <span class="language-xml"><span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;所属品牌商&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">&quot;goods.brandId&quot;</span> <span class="attr">clearable</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">           <span class="tag">&lt;<span class="name">el-option</span> <span class="attr">v-for</span>=<span class="string">&quot;item in brandList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.value&quot;</span> <span class="attr">:label</span>=<span class="string">&quot;item.label&quot;</span> <span class="attr">:value</span>=<span class="string">&quot;item.value&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>#####@change的树形组件value值是数组形式，比如[“zujian”,”form”,”checkbox”]一般获取最后一个vaule值,这里的categoryList是value，lable，chriden三个值，chriden三个值是子数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">handleCategoryChange</span>(<span class="params">value</span>) &#123;</span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">goods</span>.<span class="property">categoryId</span> = value[value.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+
+
+<p>#####点击切换框，这里如果是false，则是默认值，这里的multipleSpec如果是false则隐藏添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-col&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">el-radio-group</span> <span class="attr">v-model</span>=<span class="string">&quot;multipleSpec&quot;</span> @<span class="attr">change</span>=<span class="string">&quot;specChanged&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">el-radio-button</span> <span class="attr">:label</span>=<span class="string">&quot;false&quot;</span>&gt;</span>默认标准规格<span class="tag">&lt;/<span class="name">el-radio-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">el-radio-button</span> <span class="attr">:label</span>=<span class="string">&quot;true&quot;</span>&gt;</span>多规格支持<span class="tag">&lt;/<span class="name">el-radio-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">el-radio-group</span>&gt;</span></span></span><br><span class="line">&lt;/el-col&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">el-col</span> <span class="attr">v-if</span>=<span class="string">&quot;multipleSpec&quot;</span> <span class="attr">:span</span>=<span class="string">&quot;10&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">:plain</span>=<span class="string">&quot;true&quot;</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;handleSpecificationShow&quot;</span>&gt;</span>添加<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="attr">specChanged</span>: <span class="keyword">function</span>(<span class="params">label</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (label === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">specifications</span> = [&#123; <span class="attr">specification</span>: <span class="string">&#x27;规格&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;标准&#x27;</span>, <span class="attr">picUrl</span>: <span class="string">&#x27;&#x27;</span> &#125;]</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">products</span> = [&#123; <span class="attr">id</span>: <span class="number">0</span>, <span class="attr">specifications</span>: [<span class="string">&#x27;标准&#x27;</span>], <span class="attr">price</span>: <span class="number">0.00</span>, <span class="attr">number</span>: <span class="number">0</span>, <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span> &#125;]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">specifications</span> = []</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">products</span> = []</span><br><span class="line">    &#125;</span><br><span class="line">&#125;，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>###slot的用法<br>####slot表示插值，一般用于表单，比如可以设置某个值的样式为按钮botton</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column property=<span class="string">&quot;value&quot;</span> label=<span class="string">&quot;规格值&quot;</span>&gt;</span><br><span class="line">          <span class="language-xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">              &#123;&#123; scope.row.value &#125;&#125;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">        &lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+<p>###dialog的用法，表示会话，visible.sync一般设置一个boolean值，默认false不显示，当点击是为true，然后确认之后又为false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-dialog :visible.<span class="property">sync</span>=<span class="string">&quot;specVisiable&quot;</span> title=<span class="string">&quot;设置规格&quot;</span>&gt;</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">el-form</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">ref</span>=<span class="string">&quot;specForm&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">:rules</span>=<span class="string">&quot;rules&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">:model</span>=<span class="string">&quot;specForm&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">status-icon</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">label-position</span>=<span class="string">&quot;left&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">label-width</span>=<span class="string">&quot;100px&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">style</span>=<span class="string">&quot;width: 400px; margin-left:50px;&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        &gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;规格名&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;specification&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;specForm.specification&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;规格值&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;value&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;specForm.value&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;规格图片&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;picUrl&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">el-upload</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">:action</span>=<span class="string">&quot;uploadPath&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">:show-file-list</span>=<span class="string">&quot;false&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">:headers</span>=<span class="string">&quot;headers&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">:on-success</span>=<span class="string">&quot;uploadSpecPicUrl&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">class</span>=<span class="string">&quot;avatar-uploader&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">accept</span>=<span class="string">&quot;.jpg,.jpeg,.png,.gif&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &gt;</span></span></span><br><span class="line"><span class="language-xml">              <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-if</span>=<span class="string">&quot;specForm.picUrl&quot;</span> <span class="attr">:src</span>=<span class="string">&quot;specForm.picUrl&quot;</span> <span class="attr">class</span>=<span class="string">&quot;avatar&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">              <span class="tag">&lt;<span class="name">i</span> <span class="attr">v-else</span> <span class="attr">class</span>=<span class="string">&quot;el-icon-plus avatar-uploader-icon&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">el-upload</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">slot</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dialog-footer&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">&quot;specVisiable = false&quot;</span>&gt;</span>取消<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;handleSpecificationAdd&quot;</span>&gt;</span>确定<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span></span><br><span class="line">    &lt;/el-card&gt;</span><br></pre></td></tr></table></figure>
+<p>###点击确定后执行，将数据加入，使用unshift方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">handleAttributeAdd</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">attributes</span>.<span class="title function_">unshift</span>(<span class="variable language_">this</span>.<span class="property">attributeForm</span>)</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">attributeVisiable</span> = <span class="literal">false</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>###一个将元素赋值的方法，这里获取scope.row这一行的元素值，然后Object.assign将元素复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column align=<span class="string">&quot;center&quot;</span> label=<span class="string">&quot;操作&quot;</span> width=<span class="string">&quot;100&quot;</span> <span class="keyword">class</span>-name=<span class="string">&quot;small-padding fixed-width&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> <span class="attr">size</span>=<span class="string">&quot;mini&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;handleProductShow(scope.row)&quot;</span>&gt;</span>设置<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">&lt;/el-table-column&gt;</span><br><span class="line"><span class="title function_">handleProductShow</span>(<span class="params">row</span>) &#123;</span><br><span class="line">      <span class="keyword">debugger</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(row)</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">productForm</span> = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, row)</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">productVisiable</span> = <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/04/19/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81vue%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2023-04-19T15:25:03.059Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-19</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/04/18/wms%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-  	<time datetime="2023-04-18T14:59:38.595Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-18</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/08/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2023-03-08T14:08:25.123Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-08</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/01/16/git%20%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2023-01-16T13:53:13.892Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/09/17/docker%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2022-09-17T12:34:13.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-17</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      </div>
+    </span>
+  </div>
+</div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/04/19/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81vue%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/08/26/lamdba%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BF%90%E7%94%A8%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-08-26T06:22:39.859Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-26</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2022-08-22T01:14:42.339Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/18/wms%E9%83%A8%E7%BD%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/08/18/%E9%83%A8%E7%BD%B2ruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E7%89%88/" class="archive-article-date">
-  	<time datetime="2022-08-18T09:29:31.771Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-18</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/08/18/%E9%83%A8%E7%BD%B2ruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%8D%E5%88%86%E7%A6%BB%E7%89%88/" class="archive-article-date">
-  	<time datetime="2022-08-18T08:51:40.113Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-18</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/25/%E5%9B%9E%E6%BA%AF%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%8C%E5%92%8C%E6%A0%88%E7%9A%84%E8%BF%90%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2022-07-25T02:59:38.180Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-25</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -412,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
