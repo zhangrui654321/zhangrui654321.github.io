@@ -152,6 +152,61 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-optional的使用总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="optional的使用总结"><a href="#optional的使用总结" class="headerlink" title="optional的使用总结"></a>optional的使用总结</h2><h3 id="1-ifPresent避免使用空指针"><a href="#1-ifPresent避免使用空指针" class="headerlink" title="1..ifPresent避免使用空指针"></a>1..ifPresent避免使用空指针</h3><h5 id="这里是在ifpresent中如果不为空则执行各种程序"><a href="#这里是在ifpresent中如果不为空则执行各种程序" class="headerlink" title="这里是在ifpresent中如果不为空则执行各种程序"></a>这里是在ifpresent中如果不为空则执行各种程序</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    HashMap&lt;Object, Object&gt; objectObjectHashMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    objectObjectHashMap.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;kawai&quot;</span>);</span><br><span class="line">    objectObjectHashMap.put(<span class="string">&quot;age&quot;</span>, <span class="number">18</span>);</span><br><span class="line">    <span class="type">Person</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    <span class="comment">//TODO 使用内部的ifPresent避免了空指针异常</span></span><br><span class="line">    Optional.ofNullable(objectObjectHashMap.get(<span class="string">&quot;name1&quot;</span>))</span><br><span class="line">        .ifPresent(name -&gt; a.setName(name.toString().toUpperCase()));</span><br><span class="line">    Optional.ofNullable(objectObjectHashMap.get(<span class="string">&quot;age1&quot;</span>))</span><br><span class="line">        .ifPresent(age -&gt; a.setAge(Integer.valueOf(age.toString()) + <span class="number">18</span>));</span><br><span class="line">    System.out.println(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-链式调用-注意，这里的map可以避免空指针"><a href="#2-链式调用-注意，这里的map可以避免空指针" class="headerlink" title="2.链式调用 注意，这里的map可以避免空指针"></a>2.链式调用 注意，这里的map可以避免空指针</h5><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Integer a = getA(); </span><br><span class="line"><span class="keyword">if</span> (a != <span class="literal">null</span>) &#123;</span><br><span class="line">  Integer b = getB();</span><br><span class="line">  <span class="keyword">if</span> ( b != <span class="literal">null</span>) &#123;</span><br><span class="line">    Integer c = getC();</span><br><span class="line">    <span class="keyword">if</span> ( c != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> (a + b) * c;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">Optional&lt;Integer&gt; result = Optional.ofNullable(getA())</span><br><span class="line">                             .flatMap(a   -&gt; Optional.ofNullable(getB()).map( b -&gt; a + b ))</span><br><span class="line">                             .flatMap(sum -&gt; Optional.ofNullable(getC()).map( c -&gt; sum * c ))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-使用orelse-为空则返回默认值"><a href="#3-使用orelse-为空则返回默认值" class="headerlink" title="3.使用orelse 为空则返回默认值"></a>3.使用orelse 为空则返回默认值</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="keyword">class</span> <span class="title class_">UserMapper</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="type">static</span> BizUser <span class="title">selectBizUserByEmployeeNum</span><span class="params">(String employeeNum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="type">static</span> <span class="type">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    BizUser user = UserMapper.<span class="built_in">selectBizUserByEmployeeNum</span>(<span class="string">&quot;3306&quot;</span>);</span><br><span class="line">    Optional.<span class="built_in">ofNullable</span>(user).<span class="built_in">map</span>(BizUser::getDeptId).<span class="built_in">filter</span>(deptId -&gt; deptId.<span class="built_in">intValue</span>() != <span class="number">0</span>)</span><br><span class="line">        .<span class="built_in">orElseThrow</span>(() -&gt; <span class="keyword">new</span> <span class="built_in">CustomException</span>(<span class="string">&quot;查询到的user为空！&quot;</span>));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/03/14/optional%E7%9A%84%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-新增商品vue总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -652,7 +707,7 @@
 <p> 首先生成公钥</p>
 <p>进入jinkins容器后执行</p>
 <p>docker exec -it jenkins bash</p>
-<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#x31;&#x35;&#48;&#x31;&#x39;&#52;&#x37;&#52;&#57;&#53;&#x31;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;">&#x31;&#x35;&#48;&#x31;&#x39;&#52;&#x37;&#52;&#57;&#53;&#x31;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;</a>’</p>
+<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#x31;&#53;&#x30;&#x31;&#x39;&#x34;&#x37;&#x34;&#x39;&#x35;&#x31;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#x6d;">&#x31;&#53;&#x30;&#x31;&#x39;&#x34;&#x37;&#x34;&#x39;&#x35;&#x31;&#x40;&#49;&#54;&#51;&#46;&#99;&#x6f;&#x6d;</a>’</p>
 <p>cat ~/.ssh/id_rsa.pub</p>
 <h4 id="将公钥填入"><a href="#将公钥填入" class="headerlink" title="将公钥填入"></a>将公钥填入</h4><p><img src="images/20220822-2.png"></p>
 <p>新建一个自由风格项目</p>
@@ -670,7 +725,7 @@
 <p>这里的shell命令就是删除原来的进程然后构建</p>
 <h2 id="webhook配置"><a href="#webhook配置" class="headerlink" title="webhook配置"></a>webhook配置</h2><h4 id="webhook配置-1"><a href="#webhook配置-1" class="headerlink" title="webhook配置"></a>webhook配置</h4><p>\1.   安装<strong>Generic Webhook Trigger</strong>插件</p>
 <p>\2.   加入git的公钥到jenkins</p>
-<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#x35;&#49;&#x37;&#x32;&#x35;&#51;&#55;&#x30;&#x34;&#57;&#64;&#x31;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#x35;&#49;&#x37;&#x32;&#x35;&#51;&#55;&#x30;&#x34;&#57;&#64;&#x31;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a>‘ cat ~/.ssh/id_rsa.pub</p>
+<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#53;&#49;&#55;&#50;&#x35;&#x33;&#x37;&#x30;&#52;&#x39;&#64;&#x31;&#x36;&#51;&#46;&#99;&#x6f;&#109;">&#49;&#53;&#49;&#55;&#50;&#x35;&#x33;&#x37;&#x30;&#52;&#x39;&#64;&#x31;&#x36;&#51;&#46;&#99;&#x6f;&#109;</a>‘ cat ~/.ssh/id_rsa.pub</p>
 <p>\4.    将构建触发器勾上!<img src="images/20220822-9.png"></p>
 <p>\5.                 </p>
 <p>配置apitoken，这里是后面APItoken的地址</p>
@@ -746,7 +801,7 @@
         <h1 id="部署ruoyi前后端分离版"><a href="#部署ruoyi前后端分离版" class="headerlink" title="部署ruoyi前后端分离版"></a>部署ruoyi前后端分离版</h1><h3 id="此步骤在不分离版后延续"><a href="#此步骤在不分离版后延续" class="headerlink" title="此步骤在不分离版后延续"></a>此步骤在不分离版后延续</h3><h3 id="redis启动"><a href="#redis启动" class="headerlink" title="redis启动"></a>redis启动</h3><p>docker pull redis:latest<br>docker run -d –rm -v /root/redis/data:/data –name redis -p 6379:6379 redis  redis-server  –appendonly yes</p>
 <h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><p>cd /data/tmp<br>tar -zxvf node-v14.15.5-linux-x64.tar.gz<br>mv node-v14.15.5-linux-x64 /data/service<br>cd /data/service<br>ll<br>配置环境变量<br>vim /etc/profile<br>export NODEJS_HOME=/data/service/node-v14.15.5-linux-x64<br>export PATH=$PATH:$NODEJS_HOME/bin<br>source /etc/profile</p>
 <h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>cd /data/tmp<br>tar zxvf nginx-1.18.0.tar.gz<br>cd nginx-1.18.0<br>./configure –prefix=/data/service/ngnix<br>make &amp;&amp; make install<br>/data/service/ngnix/sbin/nginx</p>
-<h3 id="git拉代码并修改配置文件，打包"><a href="#git拉代码并修改配置文件，打包" class="headerlink" title="git拉代码并修改配置文件，打包"></a>git拉代码并修改配置文件，打包</h3><p>cd /data/gitee<br>git clone <a href="mailto:&#x67;&#105;&#116;&#64;&#x67;&#105;&#x74;&#101;&#x65;&#46;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#64;&#x67;&#105;&#x74;&#101;&#x65;&#46;&#x63;&#111;&#x6d;</a>:y_project/RuoYi-Vue.git<br>cd /data/gitee/RuoYi-Vue/ruoyi-admin/src/main/resources/<br>#修改application.yml的项目启动端口号与文件上传路径<br>vim application.yml<br>#修改application-druid.yml的数据源<br>vim application-druid.yml<br>cd /data/gitee/RuoYi-Vue/<br>mvn clean install -pl com.ruoyi:ruoyi-admin -am<br>mkdir -p /data/app/ruoyi-vue<br>cp /data/gitee/RuoYi-Vue/ruoyi-admin/target/ruoyi-admin.jar /data/app/ruoyi-vue/ruoyi-admin.jar<br>cd /data/app/ruoyi-vue/<br>#后台启动项目<br>nohup java -jar ruoyi-admin.jar &amp;<br>#查看项目运行日志<br>tail -f nohup.out</p>
+<h3 id="git拉代码并修改配置文件，打包"><a href="#git拉代码并修改配置文件，打包" class="headerlink" title="git拉代码并修改配置文件，打包"></a>git拉代码并修改配置文件，打包</h3><p>cd /data/gitee<br>git clone <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#101;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#101;&#x65;&#x2e;&#x63;&#x6f;&#109;</a>:y_project/RuoYi-Vue.git<br>cd /data/gitee/RuoYi-Vue/ruoyi-admin/src/main/resources/<br>#修改application.yml的项目启动端口号与文件上传路径<br>vim application.yml<br>#修改application-druid.yml的数据源<br>vim application-druid.yml<br>cd /data/gitee/RuoYi-Vue/<br>mvn clean install -pl com.ruoyi:ruoyi-admin -am<br>mkdir -p /data/app/ruoyi-vue<br>cp /data/gitee/RuoYi-Vue/ruoyi-admin/target/ruoyi-admin.jar /data/app/ruoyi-vue/ruoyi-admin.jar<br>cd /data/app/ruoyi-vue/<br>#后台启动项目<br>nohup java -jar ruoyi-admin.jar &amp;<br>#查看项目运行日志<br>tail -f nohup.out</p>
 <h3 id="启动前端项目"><a href="#启动前端项目" class="headerlink" title="启动前端项目"></a>启动前端项目</h3><p>1、下载依赖并打包<br>cd /data/gitee/RuoYi-Vue/ruoyi-ui<br>npm install –registry=<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com</a><br>npm install<br>mkdir /data/app/ruoyi-ui<br>mv dist/* /data/app/ruoyi-ui/</p>
 <h3 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h3><p>此处/代表根目录 root配置的dist的明确地址</p>
 <p>/prod-api/配置的是转发路径，及前端请求都转发到 localhost:18081地址</p>
@@ -803,7 +858,7 @@
 <h3 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h3><p>java<br>cd /data/tmp<br>tar -zxvf jdk-8u212-linux-x64.tar.gz<br>mv jdk1.8.0_212 /data/service<br>cd /data/service<br>ll<br>vim /etc/profile<br>export JAVA_HOME=/data/service/jdk1.8.0_212<br>export PATH=$PATH:$JAVA_HOME/bin<br>source /etc/profile</p>
 <h3 id="安装maven"><a href="#安装maven" class="headerlink" title="安装maven"></a>安装maven</h3><p>cd /data/tmp<br>tar -zxvf apache-maven-3.8.5-bin.tar.gz<br>mv apache-maven-3.8.5 /data/service<br>cd /data/service<br>ll<br>vim /etc/profile<br>export MAVEN_HOME=/data/service/apache-maven-3.8.5<br>export PATH=$PATH:$MAVEN_HOME/bin<br>source /etc/profile<br>vim /data/service/apache-maven-3.8.5/conf/setting.xml<br>#配置本地仓库<br><localRepository>/data/service/apache-maven-3.8.5/repository</localRepository><br>#配置阿里云镜像<br><mirror><br>  <id>aliyunmaven</id><br>  <mirrorOf>*</mirrorOf><br>  <name>阿里云公共仓库</name><br>  <url><a target="_blank" rel="noopener" href="https://maven.aliyun.com/repository/public">https://maven.aliyun.com/repository/public</a></url><br></mirror></p>
 <h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>yum -y groupinstall “Development Tools”<br>yum install wget unzip gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel libcurl-devel expat-devel -y<br>cd /data/tmp<br>tar zxvf git-2.18.0.tar.gz<br>cd git-2.18.0<br>./configure –prefix=/data/service/git<br>make &amp;&amp; make install<br>vim /etc/profile<br>export GIT_HOME=/data/service/git<br>export PATH=$PATH:$GIT_HOME/bin<br>source /etc/profile</p>
-<h3 id="git公钥，和下载项目"><a href="#git公钥，和下载项目" class="headerlink" title="git公钥，和下载项目"></a>git公钥，和下载项目</h3><p>git密匙<br>ssh-keygen -t rsa -C “<a href="mailto:&#x31;&#x35;&#x31;&#x37;&#x32;&#x35;&#x33;&#x37;&#x30;&#x34;&#x39;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#x31;&#x35;&#x31;&#x37;&#x32;&#x35;&#x33;&#x37;&#x30;&#x34;&#x39;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a>“<br>cat ~/.ssh/id_rsa.pub<br>//粘到公匙<br>ssh -T <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#x65;&#x65;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#x65;&#x65;&#46;&#99;&#111;&#x6d;</a><br>cd /data/gitee<br>git clone <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#x65;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#x74;&#64;&#103;&#105;&#116;&#x65;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a>:y_project/RuoYi.git</p>
+<h3 id="git公钥，和下载项目"><a href="#git公钥，和下载项目" class="headerlink" title="git公钥，和下载项目"></a>git公钥，和下载项目</h3><p>git密匙<br>ssh-keygen -t rsa -C “<a href="mailto:&#49;&#x35;&#x31;&#55;&#50;&#x35;&#x33;&#x37;&#x30;&#52;&#x39;&#64;&#49;&#x36;&#51;&#46;&#99;&#x6f;&#109;">&#49;&#x35;&#x31;&#55;&#50;&#x35;&#x33;&#x37;&#x30;&#52;&#x39;&#64;&#49;&#x36;&#51;&#46;&#99;&#x6f;&#109;</a>“<br>cat ~/.ssh/id_rsa.pub<br>//粘到公匙<br>ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#101;&#x65;&#46;&#99;&#111;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#116;&#101;&#x65;&#46;&#99;&#111;&#x6d;</a><br>cd /data/gitee<br>git clone <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#101;&#x65;&#46;&#99;&#111;&#109;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#101;&#x65;&#46;&#99;&#111;&#109;</a>:y_project/RuoYi.git</p>
 <h3 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h3><p>docker安装<br>sudo yum remove docker <br>                  docker-client <br>                  docker-client-latest <br>                  docker-common <br>                  docker-latest <br>                  docker-latest-logrotate <br>                  docker-logrotate <br>                  docker-engine<br>sudo yum install -y yum-utils device-mapper-persistent-data lvm2<br>sudo yum-config-manager <br>    –add-repo <br>    <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br>yum install -y <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm">https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm</a><br>yum install docker-ce docker-ce-cli -y<br>sudo mkdir -p /etc/docker<br>sudo tee /etc/docker/daemon.json &lt;&lt;-‘EOF’<br>{<br>  “registry-mirrors”: [“<a href="https://plb9xzjh.mirror.aliyuncs.com&quot;]">https://plb9xzjh.mirror.aliyuncs.com&quot;]</a><br>}<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker</p>
 <h3 id="mysql安装"><a href="#mysql安装" class="headerlink" title="mysql安装"></a>mysql安装</h3><p>docker pull mysql:5.7.30<br>mkdir -p /root/mysql/data /root/mysql/logs /root/mysql/conf<br>touch /root/mysql/conf/my.cnf<br>//密码是admin，-v则是挂载 –name容器名字，作为后面的启动删除名字<br>docker run -p 3306:3306 –rm –name mysql -v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/var/log/mysql -v /root/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin -d mysql:5.7.30<br>docker start mysql<br>//进入容器<br>docker exec -it mysql /bin/bash<br>#登录docker容器（方式参考上方文档）后登录mysql<br>mysql -uroot -padmin<br>#修改登录者的权限<br>GRANT ALL ON <em>.</em> TO ‘root‘@’%’;<br>#刷新命令生效<br> flush privileges;</p>
 <h3 id="修改项目配置"><a href="#修改项目配置" class="headerlink" title="修改项目配置"></a>修改项目配置</h3><p>cd /data/gitee/RuoYi/ruoyi-admin/src/main/resources/<br>#修改application.yml的项目启动端口号与文件上传路径<br>vim application.yml<br>#修改application-druid.yml的数据源<br>vim application-druid.yml</p>
@@ -851,93 +906,6 @@
 
 
   
-    <article id="post-回溯，双指针，和栈的运用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="回溯，双指针，和栈的个人总结"><a href="#回溯，双指针，和栈的个人总结" class="headerlink" title="回溯，双指针，和栈的个人总结"></a>回溯，双指针，和栈的个人总结</h1><h3 id="1-回溯"><a href="#1-回溯" class="headerlink" title="1.回溯"></a>1.回溯</h3><p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
-<p>candidates 中的数字可以无限制重复被选取。</p>
-<p>说明：</p>
-<ul>
-<li>所有数字（包括 target）都是正整数。</li>
-<li>解集不能包含重复的组合。 </li>
-</ul>
-<p>示例 1：<br>输入：candidates = [2,3,6,7], target = 7,</p>
-<h5 id="个人思路总结"><a href="#个人思路总结" class="headerlink" title="个人思路总结"></a>个人思路总结</h5><p>常规回溯，回溯的下一次target为 target-candidates【i】，首先将数组排序，每次回溯时候，当target-candidate[i]&lt;0时候，则终止回溯，剪枝干。当target==0时候，则保留结果。注意结果不重复，则每次是以begin开始。</p>
-<p>代码如下</p>
-<p><img src="images/220725.png"></p>
-<h3 id="2-双指针"><a href="#2-双指针" class="headerlink" title="2.双指针"></a>2.双指针</h3><p> 给定n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水</p>
-<ul>
-<li><p>输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</p>
-</li>
-<li><p>输出：6</p>
-<h5 id="个人思路总结-1"><a href="#个人思路总结-1" class="headerlink" title="个人思路总结"></a>个人思路总结</h5><p>我们可以按照分列的思路解，遍历每一列，第一列，最后一列，不积水，跳过，第二列开始，每列积水高度由该列左边最高列，右边最高列中最短的列减去该列高度决定，如果该值小于零，则舍弃，大于零，则累加。</p>
-<h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><p><img src="images/220725-2.png"></p>
-<h3 id="3-栈的运用"><a href="#3-栈的运用" class="headerlink" title="3.栈的运用"></a>3.栈的运用</h3><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。</p>
-<p>有效字符串需满足：</p>
-<ul>
-<li>左括号必须用相同类型的右括号闭合。</li>
-<li>左括号必须以正确的顺序闭合。</li>
-<li>注意空字符串可被认为是有效字符串。</li>
-</ul>
-<p>示例 1:</p>
-<ul>
-<li>输入: “()”  </li>
-<li>输出: true     </li>
-</ul>
-<p>示例 2:</p>
-<ul>
-<li><p>输入: “()[]{}”    </p>
-</li>
-<li><p>输出: true  </p>
-<h5 id="个人思路"><a href="#个人思路" class="headerlink" title="个人思路"></a>个人思路</h5><p>如果遇到左括号，则将右括号入栈。如果是右括号，则判断是不是和栈顶弹出的元素相同，如果不相同则false，如果相同则弹出，如果栈为空 则直接false，因为此时后面都是弹出的。</p>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><h5 id=""><a href="#" class="headerlink" title=""></a><img src="images/0725-3.png"></h5></li>
-</ul>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/25/%E5%9B%9E%E6%BA%AF%EF%BC%8C%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%8C%E5%92%8C%E6%A0%88%E7%9A%84%E8%BF%90%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -952,7 +920,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 John Doe
+    		&copy; 2024 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
