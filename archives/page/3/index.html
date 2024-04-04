@@ -6,29 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>Archives | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="docker部署jenkins和gitlab总结jenkins安装1拉取docker镜像并启动docker pull jenkinsci&#x2F;blueoceandocker run -e JAVA_OPTS&#x3D;”-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION&#x3D;true” –name jenkins">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:url" content="http://example.com/archives/page/3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="docker部署jenkins和gitlab总结jenkins安装1拉取docker镜像并启动docker pull jenkinsci&#x2F;blueoceandocker run -e JAVA_OPTS&#x3D;”-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION&#x3D;true” –name jenkins">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-1.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-2.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-3.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-5.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-8.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-9.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-10.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-11.png">
-<meta property="og:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-12.png">
-<meta property="article:published_time" content="2022-08-22T01:14:42.339Z">
-<meta property="article:modified_time" content="2023-02-14T01:40:43.571Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/images/20220822-1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -164,217 +150,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dockers部署jenkins和gitlab总结" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-    <div class="article-entry" itemprop="articleBody">
+    
       
-        <h1 id="docker部署jenkins和gitlab总结"><a href="#docker部署jenkins和gitlab总结" class="headerlink" title="docker部署jenkins和gitlab总结"></a>docker部署jenkins和gitlab总结</h1><h2 id="jenkins安装"><a href="#jenkins安装" class="headerlink" title="jenkins安装"></a>jenkins安装</h2><h3 id="1拉取docker镜像并启动"><a href="#1拉取docker镜像并启动" class="headerlink" title="1拉取docker镜像并启动"></a>1拉取docker镜像并启动</h3><p>docker pull jenkinsci/blueocean<br>docker run -e JAVA_OPTS=”-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true” –name jenkins -u root –rm  -d -p 7005:8080 -p 50000:50000 -v /data/service/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /data/service/apache-maven-3.8.5:/usr/local/maven -v /data/service/jdk1.8.0_212:/usr/local/jdk jenkinsci/blueocean</p>
-<p>注意，这里的run -e JAVA_OPTS=”-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true” –name 是用来允许跨网站请求伪造，方便后来部署webhook</p>
-<p>–rm代表stop容器后就删除了容器 -v代表挂载，这里分别挂载jenkins目录，maven目录，jdk目录 -name代表容器名是jenkens ，这个可以直接通过docker rm Jenkins就删除了jenkins目录 -p代表端口映射，这里是代表容器在7005端口启动</p>
-<p>启动后访问 ip:7005</p>
-<h3 id="2查看密码登录"><a href="#2查看密码登录" class="headerlink" title="2查看密码登录"></a>2查看密码登录</h3><p>查看密码 ，目录文件为/data/service/Jenkins</p>
-<p>cat /data/service/jenkins/secrets/initialAdminPassword</p>
-<h3 id="3配置环境变量和git"><a href="#3配置环境变量和git" class="headerlink" title="3配置环境变量和git"></a>3配置环境变量和git</h3><p>设置全局工作变量 ，git和java是有的，不用配置</p>
-<p>这里只用配置maven环境变量，地址是docker容器内的</p>
-<p><img src="images/20220822-1.png"></p>
-<p> 首先生成公钥</p>
-<p>进入jinkins容器后执行</p>
-<p>docker exec -it jenkins bash</p>
-<p>ssh-keygen -t rsa -C ‘<a href="mailto:&#49;&#x35;&#x30;&#49;&#57;&#x34;&#55;&#x34;&#57;&#x35;&#x31;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;">&#49;&#x35;&#x30;&#49;&#57;&#x34;&#55;&#x34;&#57;&#x35;&#x31;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#109;</a>’</p>
-<p>cat ~/.ssh/id_rsa.pub</p>
-<h4 id="将公钥填入"><a href="#将公钥填入" class="headerlink" title="将公钥填入"></a>将公钥填入</h4><p><img src="images/20220822-2.png"></p>
-<p>新建一个自由风格项目</p>
-<p><img src="images/20220822-3.png"></p>
-<p>这里将刚才的公钥填入</p>
-<h3 id="4安装ssh插件并执行远程ssh连接"><a href="#4安装ssh插件并执行远程ssh连接" class="headerlink" title="4安装ssh插件并执行远程ssh连接"></a>4安装ssh插件并执行远程ssh连接</h3><p>搜索 Publish over SSH 插件安装，搜索 Maven Integration 插件安装</p>
-<p>在系统设置下配置远程连接，这里我配置主机地址,找到<strong>Publish over SSH</strong></p>
-<p><img src="images/20220822-5.png"></p>
-<p>接着构建项目</p>
-<p>主要流程是先打包项目，然后把git目录下的项目的包发送</p>
-<p><img src="images/20220822-8.png"></p>
-<p>这里首先是Soure set这里代表git根目录下的地址</p>
-<p>remove prefix代表去除项目前缀，可以不配置</p>
-<p>关键是remote directory 这里是用户的目录地址下的，这是个坑，即如果是root目录，则是/root/data/test，即用户打包的东西会传到这个目录下</p>
-<p>这里的shell命令就是删除原来的进程然后构建</p>
-<h2 id="webhook配置"><a href="#webhook配置" class="headerlink" title="webhook配置"></a>webhook配置</h2><h4 id="webhook配置-1"><a href="#webhook配置-1" class="headerlink" title="webhook配置"></a>webhook配置</h4><p>\1.   安装<strong>Generic Webhook Trigger</strong>插件</p>
-<p>\2.   加入git的公钥到jenkins</p>
-<p>\3.   生成key  ssh-keygen -t rsa -C ‘<a href="mailto:&#x31;&#x35;&#x31;&#x37;&#50;&#x35;&#x33;&#x37;&#x30;&#52;&#x39;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#x6f;&#109;">&#x31;&#x35;&#x31;&#x37;&#50;&#x35;&#x33;&#x37;&#x30;&#52;&#x39;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#x6f;&#109;</a>‘ cat ~/.ssh/id_rsa.pub</p>
-<p>\4.    将构建触发器勾上!<img src="images/20220822-9.png"></p>
-<p>\5.                 </p>
-<p>配置apitoken，这里是后面APItoken的地址</p>
-<p>这里是在用户配置哪里，点设置，进去之后就能看到apitoken</p>
-<p><img src="images/20220822-10.png"></p>
-<p>先找到设置然后打勾</p>
-<p><img src="images/20220822-11.png"></p>
-<p>\1.   找到WebHooks配置界面，在POST地址框中输入如下格式内容：</p>
-<p>\2.  <img src="images/20220822-12.png"></p>
-<p>\3.   http://<User ID>:<API Token>@&lt;Jenkins IP地址&gt;:端口/generic-webhook-trigger/invoke </p>
-<p>\4.   添加url</p>
-<p><a target="_blank" rel="noopener" href="http://root:1148e42061461a8d68883794319c3dcd82@192.168.2.2:7005/generic-webhook-trigger/invoke">http://root:1148e42061461a8d68883794319c3dcd82@192.168.2.2:7005/generic-webhook-trigger/invoke</a></p>
-<h2 id="配置gitlab"><a href="#配置gitlab" class="headerlink" title="配置gitlab"></a>配置gitlab</h2><h3 id="拉docker-并启动"><a href="#拉docker-并启动" class="headerlink" title="拉docker 并启动"></a>拉docker 并启动</h3><p>docker pull gitlab/gitlab-ce<br>docker run -d  -p 443:443 -p 81:80 -p 222:22 –name gitlab –restart always -v /root/gitlab/config:/etc/gitlab -v /root/gitlab/logs:/var/log/gitlab -v /root/gitlab/data:/var/opt/gitlab gitlab/gitlab-ce</p>
-<h4 id="配置启动路径"><a href="#配置启动路径" class="headerlink" title="配置启动路径"></a>配置启动路径</h4><p>gitlab.rb文件内容默认全是注释</p>
-<p>$ vim /root/gitlab/config/gitlab.rb</p>
-<p>配置http协议所使用的访问地址,不加端口号默认为80</p>
-<p>external_url ‘<a target="_blank" rel="noopener" href="http://192.168.2.7&/#39;">http://192.168.2.7&#39;</a></p>
-<p>external_url ‘<a target="_blank" rel="noopener" href="http://120.77.247.123&/#39;">http://120.77.247.123&#39;</a></p>
-<p>配置ssh协议所使用的访问地址和端口</p>
-<p>gitlab_rails[‘gitlab_ssh_host’] = ‘192.168.2.7 ‘<br>gitlab_rails[‘gitlab_shell_ssh_port’] = 222 # 此端口是run时22端口映射的222端口<br>:wq #保存配置文件并退出<br>重启gitlab容器</p>
-<p>$ docker restart gitlab<br>GitLab占用内存非常恐怖，解决方法很简单<br>     修改/root/gitlab/config/gitlab/gitlab.rb 文件，将 unicorn[‘worker_processes’] = 2 去掉注释就可以了。在注释的情况下默认是服务器上的所有线程。</p>
-<h3 id="重置root密码"><a href="#重置root密码" class="headerlink" title="重置root密码"></a>重置root密码</h3><p>docker exec -it gitlab /bin/bash<br>启用docker里面gitlab的ruby</p>
-<h4 id="注意，这里一定要等到控制台打印信息后才能输入下面的user"><a href="#注意，这里一定要等到控制台打印信息后才能输入下面的user" class="headerlink" title="注意，这里一定要等到控制台打印信息后才能输入下面的user"></a>注意，这里一定要等到控制台打印信息后才能输入下面的user</h4><p>gitlab-rails console -e production</p>
-<p> 找到管理员用户<br>user = User.where(id: 1).first<br> 更改密码<br>user.password = ‘abcd1234’<br>user.password_confirmation = ‘abcd1234’<br>记得保存<br>user.save!</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>​                               </p>
-
       
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2022/06/15/%E8%8B%A5%E4%BE%9D%E9%A1%B9%E7%9B%AE%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%83%A8%E7%BD%B2/" class="archive-article-date">
+  	<time datetime="2022-06-15T08:32:27.658Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-15</time>
+</a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
+    	 
+        <div class="article-info info-on-right">
+          
+          
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/08/22/dockers%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2022/08/26/lamdba%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E8%BF%90%E7%94%A8%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
   
-    <a href="/2022/08/18/%E9%83%A8%E7%BD%B2ruoyi%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E7%89%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#docker%E9%83%A8%E7%BD%B2jenkins%E5%92%8Cgitlab%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">docker部署jenkins和gitlab总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jenkins%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">jenkins安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F%E5%B9%B6%E5%90%AF%E5%8A%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">1拉取docker镜像并启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">2查看密码登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%92%8Cgit"><span class="toc-number">1.1.3.</span> <span class="toc-text">3配置环境变量和git</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%85%AC%E9%92%A5%E5%A1%AB%E5%85%A5"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">将公钥填入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E5%AE%89%E8%A3%85ssh%E6%8F%92%E4%BB%B6%E5%B9%B6%E6%89%A7%E8%A1%8C%E8%BF%9C%E7%A8%8Bssh%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.1.4.</span> <span class="toc-text">4安装ssh插件并执行远程ssh连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webhook%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.</span> <span class="toc-text">webhook配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webhook%E9%85%8D%E7%BD%AE-1"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">webhook配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgitlab"><span class="toc-number">1.3.</span> <span class="toc-text">配置gitlab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89docker-%E5%B9%B6%E5%90%AF%E5%8A%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">拉docker 并启动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%90%AF%E5%8A%A8%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">配置启动路径</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%BD%AEroot%E5%AF%86%E7%A0%81"><span class="toc-number">1.3.2.</span> <span class="toc-text">重置root密码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%8C%E8%BF%99%E9%87%8C%E4%B8%80%E5%AE%9A%E8%A6%81%E7%AD%89%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%89%93%E5%8D%B0%E4%BF%A1%E6%81%AF%E5%90%8E%E6%89%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%8B%E9%9D%A2%E7%9A%84user"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">注意，这里一定要等到控制台打印信息后才能输入下面的user</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.3.</span> <span class="toc-text"></span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -398,8 +213,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
