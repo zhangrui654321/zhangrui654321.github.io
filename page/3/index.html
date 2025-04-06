@@ -152,6 +152,264 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-算法-双指针和hashmap的运用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法-双指针和hashmap的运用"><a href="#算法-双指针和hashmap的运用" class="headerlink" title="算法-双指针和hashmap的运用"></a>算法-双指针和hashmap的运用</h1><h3 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1.两数之和"></a>1.两数之和</h3><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</p>
+<p>给定 nums = [2, 7, 11, 15], target = 9</p>
+<p>因为 nums[0] + nums[1] = 2 + 7 = 9</p>
+<p>所以返回 [0, 1]</p>
+<h3 id="个人思路"><a href="#个人思路" class="headerlink" title="个人思路"></a>个人思路</h3><p>遍历数组，计算和目标的差额temp，并把数组放入hashmap，调用hashmap.put(nums[i],i)方法，如果hashmap中包含temp这个key，则是一种答案</p>
+<p><img src="images/220714-1.png"></p>
+<h3 id="2-最长回文子串"><a href="#2-最长回文子串" class="headerlink" title="2.最长回文子串"></a>2.最长回文子串</h3><p>给你一个字符串 s，找到 s 中最长的回文子串。</p>
+<p>示例 1：</p>
+<ul>
+<li><p>输入：s = “babad”</p>
+</li>
+<li><p>输出：”bab”</p>
+</li>
+<li><p>解释：”aba” 同样是符合题意的答案。</p>
+<h4 id="个人思路-1"><a href="#个人思路-1" class="headerlink" title="个人思路"></a>个人思路</h4><p>遍历字符串，每种i代表以什么为中心，分两种情况，一种是一个字符为中心朝两边扩展 ，如“bab”，中心是a，第二种是以两个字符为中心像两边扩展，如“baab”，中心是aa，创建extend（String s,int start,int end）方法，其中start，end方法代表字符截取的下标，如果s.chartAT(start)==s.chartAT(end)则start–，end++，最后返回最长的那个即是答案。</p>
+</li>
+</ul>
+<p><img src="/images/220714-2.png"></p>
+<h3 id="3-三数之和"><a href="#3-三数之和" class="headerlink" title="3.三数之和"></a>3.三数之和</h3><p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。</p>
+<p><strong>注意：</strong> 答案中不可以包含重复的三元组。</p>
+<p>示例：</p>
+<p>给定数组 nums = [-1, 0, 1, 2, -1, -4]，</p>
+<p>满足要求的三元组集合为：<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
+<h4 id="个人思路-2"><a href="#个人思路-2" class="headerlink" title="个人思路"></a>个人思路</h4><p>遍历 字符串，i下表表示第一个数字索引，剩下两个两个数一个为i+1，一个为length-1，如果 nums【i】+nums【left】+nums【right】大于0，则 right–，否则left++；如果等于0，则right–，left++；另外等于0时候，则要考虑重复，如果这个 nums【right】==nums【right+1】则right–，就会去除重复</p>
+<p><img src="images/220714-3.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/14/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88%E5%92%8Chashmap%E7%9A%84%E8%BF%90%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-token的一点个人总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="token的个人总结"><a href="#token的个人总结" class="headerlink" title="token的个人总结"></a>token的个人总结</h2><h4 id="token的组成"><a href="#token的组成" class="headerlink" title="token的组成"></a>token的组成</h4><p>1.header 元数据，定义token的类型和加密算法</p>
+<p>2.payload token的具体数据，比如userid就是放在payload中</p>
+<p>3.sign 签名 服务器通过<code>Payload</code>、<code>Header</code>和一个密钥(<code>secret</code>)使用 <code>Header</code> 里面指定的签名算法（默认是 HMAC SHA256）生成。</p>
+<h3 id="生成token方法"><a href="#生成token方法" class="headerlink" title="生成token方法"></a>生成token方法</h3><p>调用 jwt.creat()方法生成，具体如下，先用SHA256算法将sercret加密，放入sign中，将userid放入payload中，定义header的加密算法和token类型</p>
+<p><img src="images/220708-1.png"></p>
+<h3 id="解析token方法，并获取userid"><a href="#解析token方法，并获取userid" class="headerlink" title="解析token方法，并获取userid"></a>解析token方法，并获取userid</h3><p>主要是先根据sign获取到JWTVerifier对象，再获取DecodeJwt对象，最后将payload中uerid取出</p>
+<p><img src="images/220708-2.png"></p>
+<p>总之，token是根据签名的加密算法生成sign，再根据sign反解析得到JWTVerifier，并可以把userid放入clamims中</p>
+<h3 id="token的一些好处"><a href="#token的一些好处" class="headerlink" title="token的一些好处"></a>token的一些好处</h3><p>1.无状态</p>
+<p>2.有效避免了CSRF 攻击（大部分情况下存放在 local storage ）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/08/token%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Redis持久化机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Redis-持久化机制"><a href="#Redis-持久化机制" class="headerlink" title="Redis 持久化机制"></a>Redis 持久化机制</h2><p>很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。</p>
+<p>Redis 不同于 Memcached 的很重要一点就是，Redis 支持持久化，而且支持两种不同的持久化操作。<strong>Redis 的一种持久化方式叫快照（snapshotting，RDB），另一种方式是只追加文件（append-only file, AOF）</strong>。这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。</p>
+<p><strong>快照（snapshotting）持久化（RDB）</strong></p>
+<p>Redis 可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis 创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis 主从结构，主要用来提高 Redis 性能），还可以将快照留在原地以便重启服务器的时候使用。</p>
+<p>快照持久化是 Redis 默认采用的持久化方式，在 Redis.conf 配置文件中默认有此下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br></pre></td></tr></table></figure>
+
+<p><strong>AOF（append-only file）持久化</strong></p>
+<p>与快照持久化相比，AOF 持久化的实时性更好，因此已成为主流的持久化方案。默认情况下 Redis 没有开启 AOF（append only file）方式的持久化，可以通过 appendonly 参数开启：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>1</p>
+<p>开启 AOF 持久化后每执行一条会更改 Redis 中的数据的命令，Redis 就会将该命令写入到内存缓存 <code>server.aof_buf</code> 中，然后再根据 <code>appendfsync</code> 配置来决定何时将其同步到硬盘中的 AOF 文件。</p>
+<p>AOF 文件的保存位置和 RDB 文件的位置相同，都是通过 dir 参数设置的，默认的文件名是 <code>appendonly.aof</code>。</p>
+<p>在 Redis 的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：<br>appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度<br>appendfsync everysec  #每秒钟同步一次，显式地将多个写命令同步到硬盘<br>appendfsync no        #让操作系统决定何时进行同步</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/07/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ThreadPoolExecutor 类分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="线程池总结"><a href="#线程池总结" class="headerlink" title="线程池总结"></a>线程池总结</h2><p><strong><code>ThreadPoolExecutor</code> 3 个最重要的参数：</strong></p>
+<ul>
+<li><p><strong><code>corePoolSize</code> :</strong> 核心线程数线程数定义了最小可以同时运行的线程数量。</p>
+</li>
+<li><p><strong><code>maximumPoolSize</code> :</strong> 当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数。</p>
+</li>
+<li><p><strong><code>workQueue</code>:</strong> 当新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。</p>
+<h5 id="线程池的执行策略"><a href="#线程池的执行策略" class="headerlink" title="线程池的执行策略"></a>线程池的执行策略</h5><p><img src="E:\javaProject\hexo\source\images\220707-2.png"></p>
+<p><img src="/images/220707-2.png"></p>
+<h5 id="线程池和callable一起使用，一般用来有返回值得类型"><a href="#线程池和callable一起使用，一般用来有返回值得类型" class="headerlink" title="线程池和callable一起使用，一般用来有返回值得类型"></a>线程池和callable一起使用，一般用来有返回值得类型</h5><p>第一 创建线程池</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(9, 9, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>​        第二 重写callable方法</p>
+<p>​        Callable<List> bannerListCallable = () -&gt; adService.queryIndex();</p>
+<p>​        第三步 调用线程池submit方法，获取future对象</p>
+<p>​        Future<List> banner=executorService.submit(bannerListCallable);</p>
+<p>​        第四步，调用future.get方法获取返回值</p>
+<p>​        Map&lt;String, Object&gt; entity = new HashMap&lt;&gt;();</p>
+<p>​        entity.put(“banner”, banner.get());</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/07/ThreadPoolExecutor%20%E7%B1%BB%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-递归的一点思考" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -299,7 +557,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 John Doe
+    		&copy; 2025 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

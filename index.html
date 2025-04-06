@@ -152,6 +152,220 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-two number " class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="How-to-handle-Trapping-Rain-Water"><a href="#How-to-handle-Trapping-Rain-Water" class="headerlink" title="How to handle Trapping Rain Water"></a>How to handle Trapping Rain Water</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">Output: 6</span><br><span class="line">Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.</span><br></pre></td></tr></table></figure>
+
+<h3 id="in-this-problem-for-every-line-what-depends-on-the-most-line-height"><a href="#in-this-problem-for-every-line-what-depends-on-the-most-line-height" class="headerlink" title="in this problem ,for every line ,what depends on the most line height?"></a>in this problem ,for every line ,what depends on the most line height?</h3><p>for every height,we can find the most high right height ,and the most high left height,between this two height,we need to find the lowest one,and use the lowest one to loose height.</p>
+<p>here is the code.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> &#123;</span><br><span class="line">        <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;height.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">0</span> || i==height-<span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> rHeight=<span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> lHeight=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(r=i+<span class="number">1</span>;r&lt;height.lenght;r++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(height[i]&gt;rHeight)&#123;</span><br><span class="line">                    rHeight=height[i];</span><br><span class="line">                &#125;</span><br><span class="line">               </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(l=i-<span class="number">1</span>;l&lt;height.length;l--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(height[i]&gt;lHeight)&#123;</span><br><span class="line">                    lHeight=height[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> h=Maht.min(rHeight,lHeight)-height[i];</span><br><span class="line">            <span class="keyword">if</span>(h&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                sum+=h;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2025/04/06/two%20number%20/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-springboot项目配置https证书" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="springboot项目配置https证书"><a href="#springboot项目配置https证书" class="headerlink" title="springboot项目配置https证书"></a>springboot项目配置https证书</h2><h3 id="1-改写配置文件，注意，可以不写433接口"><a href="#1-改写配置文件，注意，可以不写433接口" class="headerlink" title="1.改写配置文件，注意，可以不写433接口"></a>1.改写配置文件，注意，可以不写433接口</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line">  ssl:</span><br><span class="line">    key-store: classpath:www.xwqdzrlst.xyz.jks</span><br><span class="line">    key-store-password: iz9n9keq</span><br><span class="line">    key-store-type: JKS</span><br></pre></td></tr></table></figure>
+
+<p>2.在同级别配置文件下加入ssl证书</p>
+<p>3.访问会带上https证书</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/07/24/springboot%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AEhttps%E8%AF%81%E4%B9%A6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-gogs部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="gogs部署"><a href="#gogs部署" class="headerlink" title="gogs部署"></a>gogs部署</h2><h3 id="1-拉取镜像"><a href="#1-拉取镜像" class="headerlink" title="1.拉取镜像"></a>1.拉取镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull gogs/gogs</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-运行docker端口"><a href="#2-运行docker端口" class="headerlink" title="2.运行docker端口"></a>2.运行docker端口</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置变量</span></span><br><span class="line">CONTAINER_NAME=&quot;gogs_container&quot;</span><br><span class="line">HOST_DATA_DIR=&quot;/opt/xwqd/gogs/data&quot;  # 请替换为您想存储Gogs数据的实际路径</span><br><span class="line">GOGS_PORT=3000  # Gogs Web界面端口</span><br><span class="line">SSH_PORT=2222  # SSH端口，用于Git操作，避免和宿主机默认的22端口冲突</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">确保数据目录存在</span></span><br><span class="line">mkdir -p $HOST_DATA_DIR</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否已经有一个运行中的 Gogs 容器</span></span><br><span class="line">if [ &quot;$(docker ps -q -f name=$CONTAINER_NAME)&quot; ]; then</span><br><span class="line">    echo &quot;Stopping existing Gogs container...&quot;</span><br><span class="line">    docker stop $CONTAINER_NAME</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否有一个已经停止的 Gogs 容器并删除它</span></span><br><span class="line">if [ &quot;$(docker ps -aq -f name=$CONTAINER_NAME)&quot; ]; then</span><br><span class="line">    echo &quot;Removing existing Gogs container...&quot;</span><br><span class="line">    docker rm $CONTAINER_NAME</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行新的 Gogs 容器</span></span><br><span class="line">echo &quot;启动新的 Gogs 容器...&quot;</span><br><span class="line">docker run -d --name $CONTAINER_NAME \</span><br><span class="line">    -p $GOGS_PORT:3000 \</span><br><span class="line">    -p $SSH_PORT:22 \</span><br><span class="line">    -v $HOST_DATA_DIR:/data \</span><br><span class="line">    -e &quot;USER_UID=1000&quot; \</span><br><span class="line">    -e &quot;USER_GID=1000&quot; \</span><br><span class="line">    gogs/gogs</span><br><span class="line"></span><br><span class="line">echo &quot;Gogs 容器启动成功。&quot;</span><br><span class="line">echo &quot;Web 界面可通过 http://localhost:$GOGS_PORT 访问&quot;</span><br><span class="line">echo &quot;数据保存在 $HOST_DATA_DIR&quot;</span><br><span class="line">echo &quot;请记得配置防火墙开放 $GOGS_PORT 和 $SSH_PORT 端口&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-开放防火墙端口安全组端口"><a href="#3-开放防火墙端口安全组端口" class="headerlink" title="3.开放防火墙端口安全组端口"></a>3.开放防火墙端口安全组端口</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --zone=public --add-port=2222/tcp --permanent</span><br><span class="line"></span><br><span class="line">sudo firewall-cmd --zone=public --add-port=3000/tcp --permanent</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重新加载防火墙配置</span></span><br><span class="line">sudo firewall-cmd --reload</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查443端口是否已开启</span></span><br><span class="line">sudo firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-安装gogs，配置用户名，密码"><a href="#4-安装gogs，配置用户名，密码" class="headerlink" title="4.安装gogs，配置用户名，密码"></a>4.安装gogs，配置用户名，密码</h3><p><img src="https://img2018.cnblogs.com/i-beta/1453035/201911/1453035-20191127223232855-291745432.png" alt="img"></p>
+<p>注意，这里最后的用户名密码就是你的登录用户名密码</p>
+<h3 id="5-将本地仓库代码上传到远程仓库-适用远程仓库是空的情况"><a href="#5-将本地仓库代码上传到远程仓库-适用远程仓库是空的情况" class="headerlink" title="5.将本地仓库代码上传到远程仓库,适用远程仓库是空的情况"></a>5.将本地仓库代码上传到远程仓库,适用远程仓库是空的情况</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin http://120.78.5.19:3000/zhangrui/xwqd.git</span><br><span class="line">git push -f origin master</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/07/14/gogs%E9%83%A8%E7%BD%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-部署minio改成https注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="部署minio改成https注意事项"><a href="#部署minio改成https注意事项" class="headerlink" title="部署minio改成https注意事项"></a>部署minio改成https注意事项</h2><h3 id="1-如果想要htpps，ecs服务器必须开启443端口，防火墙必须开启443端口"><a href="#1-如果想要htpps，ecs服务器必须开启443端口，防火墙必须开启443端口" class="headerlink" title="1.如果想要htpps，ecs服务器必须开启443端口，防火墙必须开启443端口"></a>1.如果想要htpps，ecs服务器必须开启443端口，防火墙必须开启443端口</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开启443端口</span></span><br><span class="line">sudo firewall-cmd --zone=public --add-port=443/tcp --permanent</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重新加载防火墙配置</span></span><br><span class="line">sudo firewall-cmd --reload</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查443端口是否已开启</span></span><br><span class="line">sudo firewall-cmd --zone=public --list-ports</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果需要重启firewalld服务</span></span><br><span class="line">sudo systemctl restart firewalld</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-minio部署脚本-，注意一定要加上"><a href="#2-minio部署脚本-，注意一定要加上" class="headerlink" title="2.minio部署脚本 ，注意一定要加上"></a>2.minio部署脚本 ，注意一定要加上</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置变量</span></span><br><span class="line">CONTAINER_NAME=&quot;minio_container&quot;</span><br><span class="line">HOST_DATA_DIR=&quot;/mnt/data&quot;  # 请替换为您想要存储数据的实际路径</span><br><span class="line">HOST_CONFIG_DIR=&quot;/mnt/config&quot;  # 请替换为您想要存储配置的实际路径</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">确保数据和配置目录存在</span></span><br><span class="line">mkdir -p $HOST_DATA_DIR</span><br><span class="line">mkdir -p $HOST_CONFIG_DIR</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否已经有一个运行中的 MinIO 容器</span></span><br><span class="line">if [ &quot;$(docker ps -q -f name=$CONTAINER_NAME)&quot; ]; then</span><br><span class="line">    echo &quot;Stopping existing MinIO container...&quot;</span><br><span class="line">    docker stop $CONTAINER_NAME</span><br><span class="line">    docker rm $CONTAINER_NAME</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行一个新的 MinIO 容器</span></span><br><span class="line">echo &quot;Starting a new MinIO container...&quot;</span><br><span class="line">docker run -d --name $CONTAINER_NAME \</span><br><span class="line">    -p 9000:9000 -p 9001:9001 \</span><br><span class="line">    -e &quot;MINIO_ROOT_USER=admin&quot; \</span><br><span class="line">    -e &quot;MINIO_ROOT_PASSWORD=xwqdzrlst&quot; \</span><br><span class="line">    -e &quot;MINIO_HTTP_PROXY=on&quot; \</span><br><span class="line">    -v $HOST_DATA_DIR:/data \</span><br><span class="line">    -v $HOST_CONFIG_DIR:/root/.minio \</span><br><span class="line">    minio/minio server /data --console-address &quot;:9001&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;MinIO container started successfully.&quot;</span><br><span class="line">echo &quot;Data is persisted in $HOST_DATA_DIR&quot;</span><br><span class="line">echo &quot;Configuration is persisted in $HOST_CONFIG_DIR&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-注意，一定要清楚浏览器缓存"><a href="#3-注意，一定要清楚浏览器缓存" class="headerlink" title="3.注意，一定要清楚浏览器缓存"></a>3.注意，一定要清楚浏览器缓存</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/07/14/%E9%83%A8%E7%BD%B2minio%E6%94%B9%E6%88%90https%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-饿了么前端总结（上）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -705,314 +919,6 @@
 
 
   
-    <article id="post-wms部署" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<h2 id="wms部署"><a href="#wms部署" class="headerlink" title=" wms部署"></a> wms部署</h2><p>##redis部署</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br><span class="line">docker pull redis</span><br><span class="line"><span class="comment">## 创建目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p /home/redis/conf</span><br><span class="line"><span class="comment">## 创建文件</span></span><br><span class="line"><span class="built_in">touch</span> /home/redis/conf/redis.conf</span><br><span class="line">vim /home/redis/conf/redis.conf</span><br><span class="line">docker run --name redis -p 6379:6379 \</span><br><span class="line">-v /home/redis/data:/data \</span><br><span class="line">-v /home/redis/conf/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">-d redis:latest redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>###redis配置文件，主要是密码和配置持久化</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">appendonly <span class="built_in">yes</span></span><br><span class="line">requirepass zr525010</span><br></pre></td></tr></table></figure>
-
-
-<p>##mysql部署</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /root/mysql/data /root/mysql/logs /root/mysql/conf</span><br><span class="line"><span class="built_in">touch</span> /root/mysql/conf/my.cnf</span><br><span class="line">docker run \</span><br><span class="line">--name mysql \</span><br><span class="line">-d \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">--restart unless-stopped \</span><br><span class="line">-v /root/mysql/conf:/etc/mysql/conf.d -v /root/mysql/logs:/var/log/mysql -v /root/mysql/data:/var/lib/mysql \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=admin \</span><br><span class="line">mysql:5.7.37</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>##java部署</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u161-linux-x64.tar.gz</span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/data/runtime/jdk1.8.0_161</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</span><br><span class="line"><span class="comment">#让配置生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>###启动项目</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动项目</span></span><br><span class="line"><span class="built_in">nohup</span> java -jar yudao-server.jar \</span><br><span class="line">--spring.profiles.active=<span class="built_in">test</span> \</span><br><span class="line">--server.port=8091 \</span><br><span class="line">&gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line"><span class="comment">#停止项目</span></span><br><span class="line">ps -ef | grep yudao-server.jar | grep java | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> | xargs <span class="built_in">kill</span> -9</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>##nginx部署</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br><span class="line">yum install -y pcre pcre-devel</span><br><span class="line">yum install -y zlib zlib-devel</span><br><span class="line">yum install -y openssl openssl-devel</span><br><span class="line"><span class="comment">#进入官网下载</span></span><br><span class="line">nginx.org</span><br><span class="line"><span class="built_in">cd</span> /usr/local</span><br><span class="line"><span class="built_in">mkdir</span> nginx</span><br><span class="line">tar -zxvf nginx-1.16.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /usr/local/nginx</span><br><span class="line">./configure --prefix=/usr/local/nginx</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">启动nginx</span><br><span class="line"><span class="built_in">cd</span> /usr/local/nginx</span><br><span class="line">./sbin/nginx</span><br><span class="line">重启</span><br><span class="line">./sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
-
-<p>###nginx配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length 1k;     <span class="comment"># 璁剧疆鍏佽鍘嬬缉鐨勯〉闈㈡渶灏忓瓧鑺傛暟</span></span><br><span class="line">    gzip_buffers 4 16k;     <span class="comment"># 鐢ㄦ潵瀛樺偍 gzip 鐨勫帇缂╃粨鏋</span></span><br><span class="line">    gzip_http_version 1.1;  <span class="comment"># 璇嗗埆 HTTP 鍗忚鐗堟湰</span></span><br><span class="line">    gzip_comp_level 2;      <span class="comment"># 璁剧疆 gzip 鐨勫帇缂╂瘮 1-9銆 鍘嬬缉姣旀渶灏忎絾鏈€蹇紝鑰9 鐩稿弽</span></span><br><span class="line">    gzip_types gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript; <span class="comment"># 鎸囧畾鍘嬬缉绫诲瀷</span></span><br><span class="line">    gzip_proxied any;       <span class="comment"># 鏃犺鍚庣鏈嶅姟鍣ㄧ殑 headers 澶磋繑鍥炰粈涔堜俊鎭紝閮芥棤鏉′欢鍚敤鍘嬬缉</span></span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       7000;</span><br><span class="line">        server_name  192.168.2.2; <span class="comment">## 閲嶈锛侊紒锛佷慨鏀规垚浣犵殑澶栫綉 IP/鍩熷悕</span></span><br><span class="line"></span><br><span class="line">        location / &#123; <span class="comment">## 鍓嶇椤圭洰</span></span><br><span class="line">            root   /data/project/web/dist;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">            try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">        &#125;</span><br><span class="line">         location /proxy-api/ &#123;</span><br><span class="line">            proxy_pass http://192.168.2.2:8091/;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/04/18/wms%E9%83%A8%E7%BD%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git常用操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git-常用命令："><a href="#Git-常用命令：" class="headerlink" title="Git 常用命令："></a>Git 常用命令：</h1><ul>
-<li>工作区：指在本地仓库中的全部代码区域；</li>
-<li>暂存区：指在本地仓库中通过 git add 后的代码区域；</li>
-<li>本地仓库：指在本地仓库中的 git commit 后的代码区域；</li>
-<li>远程仓库：远程仓库指的托管代码的服务器。</li>
-</ul>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be9dbaf612d145d1890de71f4a57829a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="image.png"></p>
-<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h3><p>git clone 命令用于将存储库克隆到本地。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">clone</span> <span class="selector-attr">[url]</span> <span class="comment">// 将存储库克隆到本地</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><p><strong>git init 命令用于在目录中创建新的 Git 仓库。</strong></p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- git <span class="keyword">init</span> <span class="comment">// 创建新的 Git 仓库，在当前路径下生成 .git 目录</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p>git remote 用于管理跟踪远程仓库。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git remote -v <span class="comment">// 查看连接的远程仓库地址</span></span><br><span class="line">git remote <span class="keyword">add</span> origin [gitUrl] <span class="comment">// 为本地仓库添加远程仓库地址</span></span><br><span class="line">git push -u origin master <span class="comment">// 将本地仓库的master和远程仓库的master进行关联</span></span><br><span class="line">git remote origin <span class="keyword">set</span>-url [gitUrl] <span class="comment">// 为本地仓库修改远程仓库地址</span></span><br><span class="line">git remote rm origin <span class="comment">// 为本地仓库删除远程仓库连接</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h3><p>git checkout 命令用于切换分支。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">checkout</span> <span class="selector-attr">[branchName]</span> <span class="comment">// 切换分支</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">checkout</span> <span class="selector-tag">-b</span> <span class="selector-attr">[branchName]</span> <span class="comment">// 新建分支并切换到该分支</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><p>git branch 命令用于查看、创建、删除分支。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">branch</span> <span class="comment">//查看本地分支</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">branch</span> <span class="selector-tag">-r</span> <span class="comment">//查看远程分支</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">branch</span> <span class="selector-tag">-a</span> <span class="comment">//查看本地和远程分支</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">branch</span> <span class="selector-attr">[branchName]</span> <span class="comment">//新建本地分支但不切换</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">branch</span> <span class="selector-tag">-D</span> <span class="selector-attr">[branchName]</span> <span class="comment">//删除本地分支</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">branch</span> <span class="selector-tag">-m</span> <span class="selector-attr">[oldBranchName]</span> <span class="selector-attr">[newBranchName]</span> <span class="comment">//重新命名分支</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h3><p>git tag 用于创建、删除、查看标签。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">tag</span> <span class="selector-attr">[tagName]</span> <span class="comment">// 新建标签</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">tag</span> <span class="comment">// 查看标签列表</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">tag</span> <span class="selector-tag">-d</span> <span class="selector-attr">[tagName]</span> <span class="comment">// 删除标签</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">push</span> <span class="selector-tag">origin</span> <span class="selector-attr">[tagName]</span> <span class="comment">// 推送标签到远程仓库</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p><strong>git add</strong> 命令用于将本地文件添加到暂存区。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span> [file1] [file2] <span class="comment">// 添加指定文件至暂存区</span></span><br><span class="line">git <span class="keyword">add</span> [dir] <span class="comment">// 添加指定目录至暂存区</span></span><br><span class="line">git <span class="keyword">add</span> . <span class="comment">// 添加当前目录下所有文件至暂存区</span></span><br><span class="line">git <span class="keyword">add</span> -A <span class="comment">// 添加当前仓库下的所有文件改动至暂存区</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>git commit 命令用于将暂存区内容添加到本地仓库中。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;xxx&#x27;</span> <span class="comment">// 将暂存区文件添加到本地仓库，并记录下备注</span></span><br><span class="line">git commit -m <span class="string">&#x27;xxx&#x27;</span> -n <span class="comment">// 将暂存区文件添加到本地仓库，并记录下备注，同时跳过 husky hooks 设置的规则校验</span></span><br><span class="line">git commit -am <span class="string">&#x27;xxx&#x27;</span> <span class="comment">// 将文件添加到暂存区，再添加到本地仓库，并记录下备注</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>git push 命令用于将本地分支推送到远程仓库。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push <span class="selector-attr">[remoteName]</span> <span class="selector-attr">[branchName]</span> <span class="comment">// 推送分支</span></span><br><span class="line">git push <span class="attr">--set-upstream</span> <span class="selector-attr">[remoteName]</span> <span class="selector-attr">[branchName]</span> <span class="comment">// 推送分支并建立关联关系</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>git pull 命令用于从远程仓库拉取代码并合并到本地当前分支。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">// 从远程仓库拉取代码合并到本地，等同于 git fetch &amp;&amp; git merge</span></span><br><span class="line">git pull <span class="attr">--rebase</span> <span class="comment">// 使用rebase的模式进行合并</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h3><p>git fetch 命令用于从远程获取代码库。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git fetch <span class="comment">// 从所有远程仓库拉取当前分支代码</span></span><br><span class="line">git fetch <span class="selector-attr">[remoteName]</span> <span class="comment">// 从指定远程仓库拉取当前分支代码</span></span><br><span class="line">git fetch <span class="attr">--all</span> <span class="comment">// 获取所有远程仓库所有分支的更新</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-cherry-pick"><a href="#git-cherry-pick" class="headerlink" title="git cherry-pick"></a>git cherry-pick</h3><p>git cherry-pick 命令用于获取指定的 commit，可以将分支 a 上的 commit 1，复制到分支 b上。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">cherry-pick</span> <span class="selector-attr">[commitId]</span> <span class="comment">// 获取指定的commit</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><p>git merge 命令用于分支合并，将其他分支的内容合并到当前分支中。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git merge <span class="selector-attr">[branchName]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/14b182abe7c54161959596eb5b140299~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="img"></p>
-<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>git rebase 用于分支变基。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rebase master <span class="comment">// 将当前分支变基到 master 分支上</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bdee372fa7654715ba5e2538b562edef~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="image.png"></p>
-<p>git rebase -i 交互模式：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rebase -<span class="selector-tag">i</span> <span class="selector-attr">[commitId]</span> // 基于 commitId 进行 rebase，交互式变基，可以重新编辑 commit，比如压缩合并</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f45211ea91014b459befe44034917aac~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" alt="image.png"></p>
-<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><p>git reset 命令用于回退版本，可以指定退回某一次提交的版本。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD^ <span class="comment">// 回退所有内容到上一个版本</span></span><br><span class="line">git reset HEAD^ <span class="selector-attr">[filename]</span> <span class="comment">// 回退某文件到上一个版本</span></span><br><span class="line">git reset <span class="selector-attr">[commitId]</span> <span class="comment">// 回退所有内容到指定版本</span></span><br><span class="line"></span><br><span class="line">git reset <span class="attr">--soft</span> HEAD~<span class="number">1</span> <span class="comment">// 回退本地仓库到上一个版本</span></span><br><span class="line">git reset <span class="attr">--hard</span> HEAD~<span class="number">1</span> <span class="comment">// 回退本地仓库到上一个版本，并删除工作区所有未提交的修改内容</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h3><p>git revert 指令用于回滚提交，可以回滚某一次提交记录。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">revert</span> <span class="selector-attr">[commitId]</span> <span class="comment">// 回滚某次提交</span></span><br><span class="line"><span class="selector-tag">git</span> <span class="selector-tag">revert</span> <span class="selector-attr">[commitId]</span> <span class="selector-tag">-m</span> <span class="number">1</span> <span class="comment">// 回滚某次 merge 的 commit，1 代表保留主分支代码</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><p>git stash 用于暂存文件。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git stash <span class="comment">// 暂存文件</span></span><br><span class="line">git stash save <span class="string">&#x27;aa&#x27;</span> <span class="comment">// 暂存文件，添加备注</span></span><br><span class="line">git stash pop <span class="comment">// 应用最近一次暂存文件，并删除暂存记录</span></span><br><span class="line">git stash apply <span class="comment">// 应用最近一次暂存，但不删除该暂存记录</span></span><br><span class="line">git stash apply stash@&#123;第几次暂存的代码，例如<span class="number">0</span>&#125; <span class="comment">// 应用某一次暂存，但不删除该暂存记录；</span></span><br><span class="line">git stash list <span class="comment">// 暂存记录</span></span><br><span class="line">git stash clear <span class="comment">// 删除所有暂存记录</span></span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><p>git reflog 记录了所有的 commit 操作记录，便于错误操作后找回。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>git rm 用于从 git 仓库删除指定文件或目录。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> [filname]</span><br><span class="line">git <span class="built_in">rm</span> [<span class="built_in">dir</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>git log 命令用于查看 git commit 记录。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> <span class="comment">// 查看所有 commit 记录</span></span><br><span class="line">git  <span class="built_in">log</span>  --grep  瀑布流 <span class="comment">// 搜索 commit msg 有瀑布流关键字的 记录</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/03/08/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git 一般操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Git-global-setup"><a href="#Git-global-setup" class="headerlink" title="Git global setup"></a>Git global setup</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Administrator&quot;</span><br><span class="line">git config --global user.email &quot;admin@example.com&quot;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Create-a-new-repository"><a href="#Create-a-new-repository" class="headerlink" title="Create a new repository"></a>Create a new repository</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://git@192.168.2.2:222/root/newbeemallplus.git</span><br><span class="line">cd newbeemallplus</span><br><span class="line">git switch -c main</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;add README&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-
-<h5 id="Push-an-existing-folder"><a href="#Push-an-existing-folder" class="headerlink" title="Push an existing folder"></a>Push an existing folder</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd existing_folder</span><br><span class="line">git init --initial-branch=main</span><br><span class="line">git remote add origin ssh://git@192.168.2.2:222/root/newbeemallplus.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-
-<h5 id="Push-an-existing-Git-repository"><a href="#Push-an-existing-Git-repository" class="headerlink" title="Push an existing Git repository"></a>Push an existing Git repository</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd existing_repo</span><br><span class="line">git remote rename origin old-origin</span><br><span class="line">git remote add origin ssh://git@192.168.2.2:222/root/newbeemallplus.git</span><br><span class="line">git push -u origin --all</span><br><span class="line">git push -u origin --tags</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/01/16/git%20%E4%B8%80%E8%88%AC%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-docker部署springboot项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="docker部署springboot项目"><a href="#docker部署springboot项目" class="headerlink" title="docker部署springboot项目"></a>docker部署springboot项目</h1><p>本文主要介绍docker如何部署springboot项目</p>
-<h4 id="创建一个springboot项目，打包成jar包"><a href="#创建一个springboot项目，打包成jar包" class="headerlink" title="创建一个springboot项目，打包成jar包"></a>创建一个springboot项目，打包成jar包</h4><p>该项目端口为8081，logback日志目录为/home/docker/logs</p>
-<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415153310412-1698748435.png" alt="img"></p>
-<h4 id="准备一台搭建好了docker的linux服务器"><a href="#准备一台搭建好了docker的linux服务器" class="headerlink" title="准备一台搭建好了docker的linux服务器"></a>准备一台搭建好了docker的linux服务器</h4><p>linux搭建docker攻略移步：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lixianguo/p/13254950.html">https://www.cnblogs.com/lixianguo/p/13254950.html</a><br>创建/home/docker文件夹，将打包的jar包上传<br>创建/home/docker/logs文件夹存放日志文件，该路径与项目中logback中设置的一致<br>创建Dockerfile,内容如下</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定基础镜像，不需要另外安装jdk</span></span><br><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"><span class="comment">#维护者</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> lxg</span><br><span class="line"><span class="comment">#将本地文件添加到容器中，并更名为myproject.jar</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> springboot-docker-1.0-SNAPSHOT.jar myproject.jar</span></span><br><span class="line"><span class="comment">#指定访问端口，与yml文件中的端口一致</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8081</span></span><br><span class="line"><span class="comment">#容器启动时，运行该程序</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;java&quot;</span>, <span class="string">&quot;-jar&quot;</span>, <span class="string">&quot;myproject.jar&quot;</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>目录截图如下</p>
-<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415154509479-1294761548.png" alt="img"></p>
-<h4 id="使用命令构建镜像"><a href="#使用命令构建镜像" class="headerlink" title="使用命令构建镜像"></a>使用命令构建镜像</h4><p>最后空格和”.”不可忽略</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t myproject .</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415160735560-359695528.png" alt="img"></p>
-<h4 id="创建并启动容器"><a href="#创建并启动容器" class="headerlink" title="创建并启动容器"></a>创建并启动容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 8080:8081 --name myproject \</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">-v /home/docker/logs:/home/docker/logs \</span></span><br><span class="line"><span class="language-bash">&gt; -d myproject</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415162800983-219739236.png" alt="img"></p>
-<p>8080是外界访问的端口，可以自定义，8081是Dockerfile中定义的端口。<br>-v是为了将容器中的日志目录挂载出来，冒号之前是linux宿主机自己创建的目录，可以自定义。后面的是logback文件中定义的输出日志的目录。</p>
-<p><img src="https://img2022.cnblogs.com/blog/1899220/202204/1899220-20220415162939731-510580576.png" alt="img"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/17/docker%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1027,7 +933,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2024 John Doe
+    		&copy; 2025 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
